@@ -21,3 +21,41 @@ body{overflow:hidden}.labbar{height:54px;position:fixed;z-index:200;inset:0 0 au
 .design-mode [data-ui]{outline:1px dashed #ffe16a!important;outline-offset:1px;cursor:crosshair!important}.design-mode [data-ui]:hover{outline:3px solid #ffe16a!important;z-index:150!important}.design-mode [data-ui].selected{outline:4px solid #57d6ff!important;z-index:151!important}.design-mode [data-ui].selected:after{content:attr(data-ui);position:absolute;left:3px;top:3px;background:#111d;color:white;padding:2px 4px;border-radius:4px;font:700 8px monospace;max-width:95%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .object-hint{position:fixed;z-index:220;left:50%;bottom:10px;transform:translateX(-50%);background:#121211dd;border:1px solid #484743;border-radius:999px;padding:8px 13px;color:#d0cdc5;font-size:10px;pointer-events:none}
 @media(max-width:760px){.labbar{height:92px;flex-wrap:wrap;padding:7px 8px;gap:6px}.labbar>b{width:92px}.labbar select{flex:1;min-width:155px}.copyid{display:none}.stage{inset:92px 0 0;padding:7px}.object-hint{bottom:4px}}
+/* Visual pass measured against the screenshots supplied in chat (not repo references). */
+.screen{background-size:cover;background-position:center}
+.object-hint{display:none!important}
+
+.hero-button{
+  border:3px solid #ffe8a8!important;
+  border-radius:22px!important;
+  overflow:hidden;
+  box-shadow:0 4px 8px rgba(83,49,17,.28),inset 0 0 0 2px rgba(255,255,255,.45)!important;
+  color:#fff;
+}
+.hero-button.green{
+  background:
+    radial-gradient(circle at 8% 75%,rgba(95,255,178,.9) 0 8px,transparent 9px),
+    radial-gradient(circle at 96% 58%,rgba(63,238,160,.7) 0 6px,transparent 7px),
+    linear-gradient(#13e89a,#00b979 72%,#00a969);
+}
+.hero-button.blue{
+  background:
+    radial-gradient(circle at 8% 80%,rgba(93,199,255,.8) 0 7px,transparent 8px),
+    radial-gradient(circle at 90% 25%,rgba(79,185,255,.7) 0 5px,transparent 6px),
+    linear-gradient(#27aef9,#0d82ee 70%,#0870dc);
+}
+.hero-button .hero-copy{position:absolute;left:98px;top:14px;text-align:left}
+.hero-button .hero-copy b{display:block;font-size:25px;line-height:30px}
+.hero-button .hero-copy span{display:block;font-size:13px;line-height:19px;margin-top:2px}
+.hero-button em{position:absolute;right:34px;top:30px;font:normal 38px/1 Nunito;color:#fff}
+.hero-button .levels-label{position:absolute;left:88px;top:20px;font-size:24px;color:#fff}
+.hero-button.blue em{top:18px}
+
+.shop-resource{
+ display:flex;background:#3b214c;border:2px solid #f2c55b;border-radius:20px;
+ box-shadow:inset 0 0 0 2px #6d3c58;overflow:hidden;color:#fff
+}
+.shop-resource-half{position:relative;width:50%;height:100%;display:flex;align-items:center;justify-content:center;gap:11px;font-weight:900}
+.shop-resource-half+ .shop-resource-half{border-left:2px solid #f2c55b}
+.shop-resource-half .plus{position:absolute;right:7px;top:5px}
+.shop-resource-half .atlas{position:absolute!important;left:9px!important;top:5px!important}
