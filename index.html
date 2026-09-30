@@ -1,257 +1,39 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Erudition — Browser UI Lab</title>
-  <link rel="preconnect" href="https://raw.githubusercontent.com">
-  <link rel="stylesheet" href="./styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Erudition — Pixel UI Lab</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="workspace">
-    <aside class="designer" id="designerPanel">
-      <div class="designer__brand">
-        <div class="designer__dot"></div>
-        <div><b>Erudition UI Lab</b><small>браузерный макет</small></div>
+  <header class="labbar">
+    <div class="labbar__brand"><b>Erudition</b><span>Pixel UI Lab</span></div>
+    <select id="screenSelect" aria-label="Экран">
+      <option value="home">Главная</option>
+      <option value="settings">Настройки</option>
+      <option value="stats">Статистика</option>
+      <option value="achievements">Достижения</option>
+      <option value="shop">Магазин</option>
+      <option value="gameplay">Игра</option>
+      <option value="collections">Уровни / авторы</option>
+    </select>
+    <label class="tooltoggle"><input id="designerToggle" type="checkbox"><span>Объекты</span></label>
+    <label class="tooltoggle"><input id="compareToggle" type="checkbox"><span>Сравнить</span></label>
+    <input id="compareOpacity" class="opacity" type="range" min="0" max="100" value="50" title="Прозрачность референса">
+    <button id="copyId" class="copyid" type="button">ID: —</button>
+  </header>
+
+  <main class="stage">
+    <div id="viewportShell" class="viewport-shell">
+      <div id="phone" class="phone">
+        <div id="screens"></div>
+        <img id="compareLayer" class="compare-layer" alt="">
       </div>
+    </div>
+  </main>
 
-      <label class="designer__label">Экран</label>
-      <select id="screenSelect" class="designer__select">
-        <option value="home">Главная</option>
-        <option value="levels">Уровни</option>
-        <option value="collections">Библиотека</option>
-        <option value="stats">Статистика</option>
-        <option value="achievements">Достижения</option>
-        <option value="shop">Магазин</option>
-        <option value="settings">Настройки</option>
-        <option value="gameplay">Игра</option>
-      </select>
-
-      <div class="designer__section">
-        <label class="switchrow">
-          <span>Режим дизайнера</span>
-          <input id="designMode" type="checkbox">
-          <i></i>
-        </label>
-        <small>Включи и нажми на объект — справа увидишь его ID.</small>
-      </div>
-
-      <div class="designer__section">
-        <label class="switchrow">
-          <span>Референс поверх</span>
-          <input id="refToggle" type="checkbox">
-          <i></i>
-        </label>
-        <input id="refOpacity" class="designer__range" type="range" min="0" max="100" value="45">
-      </div>
-
-      <div class="inspector">
-        <small>Выбранный объект</small>
-        <strong id="selectedId">—</strong>
-        <span id="selectedHint">Включи режим дизайнера и нажми элемент.</span>
-      </div>
-
-      <div class="designer__section">
-        <button class="designer__button" id="resetView">Сбросить макет</button>
-      </div>
-    </aside>
-
-    <main class="stage">
-      <div class="phone" id="phone">
-        <div class="phone__camera"></div>
-        <div class="app">
-          <img id="referenceLayer" class="reference-layer" alt="" />
-
-          <section class="screen is-active" data-screen="home">
-            <header class="topbar" data-ui="home/topbar">
-              <button class="iconbtn" data-nav="settings" data-ui="home/settings-button">⚙</button>
-              <div class="brand">ЭРУДИЦИЯ</div>
-              <div class="resources">
-                <span class="resource" data-ui="home/coins">◉ <b>0</b></span>
-                <span class="resource" data-ui="home/feathers">🪶 <b>5/5</b></span>
-              </div>
-            </header>
-
-            <div class="home-hero">
-              <div class="library-glow"></div>
-              <img class="owl owl--home" data-ui="home/owl" src="https://raw.githubusercontent.com/nicita541/game123/main/Assets/Art/owl_mascot.png" alt="Сова">
-              <div class="plant plant--left" data-ui="home/plant-left"><i></i><i></i><i></i><i></i></div>
-              <div class="plant plant--right" data-ui="home/plant-right"><i></i><i></i><i></i></div>
-            </div>
-
-            <div class="mode-list" data-ui="home/modes">
-              <button class="mode-card mode-card--classic" data-nav="gameplay" data-ui="home/classic-card">
-                <div class="mode-icon">📜</div>
-                <div><b>Классика</b><span>Цитаты и истории</span></div>
-                <em>›</em>
-              </button>
-              <button class="mode-card mode-card--turbo" data-nav="gameplay" data-ui="home/turbo-card">
-                <div class="mode-icon">⚡</div>
-                <div><b>Турбо</b><span>Короткие раунды</span></div>
-                <em>›</em>
-              </button>
-            </div>
-          </section>
-
-          <section class="screen" data-screen="levels">
-            <header class="titlebar">
-              <button class="backbtn" data-nav="home">‹</button>
-              <h1 data-ui="levels/title">Уровни</h1>
-              <span class="resource">🪶 <b>5/5</b></span>
-            </header>
-            <div class="level-hero card" data-ui="levels/progress-card">
-              <div><small>Текущий уровень</small><strong>7</strong></div>
-              <div class="progress"><i style="width:48%"></i></div>
-              <span>120 / 250</span>
-            </div>
-            <div class="level-path" data-ui="levels/path">
-              <button class="levelnode done">✓</button><span></span>
-              <button class="levelnode done">✓</button><span></span>
-              <button class="levelnode done">✓</button><span></span>
-              <button class="levelnode current">7</button><span></span>
-              <button class="levelnode">8</button><span></span>
-              <button class="levelnode locked">🔒</button>
-            </div>
-            <div class="chapter-card card" data-ui="levels/chapter-card">
-              <div class="book-stack">▥</div>
-              <div><b>Новая глава</b><span>Откроется после 8 уровня</span></div>
-            </div>
-          </section>
-
-          <section class="screen" data-screen="collections">
-            <header class="titlebar">
-              <button class="backbtn" data-nav="home">‹</button>
-              <h1>Библиотека</h1>
-              <button class="iconbtn" data-nav="achievements">🏆</button>
-            </header>
-            <nav class="tabs" data-ui="collections/tabs">
-              <button class="tab is-active" data-tab="authors">Авторы</button>
-              <button class="tab" data-tab="themes">Темы</button>
-              <button class="tab" data-tab="books">Книги</button>
-              <button class="tab" data-tab="types">Типы</button>
-            </nav>
-            <div class="collection-grid" id="collectionGrid" data-ui="collections/grid"></div>
-          </section>
-
-          <section class="screen" data-screen="stats">
-            <header class="titlebar">
-              <button class="backbtn" data-nav="home">‹</button>
-              <h1>Статистика</h1>
-              <span></span>
-            </header>
-            <div class="stat-main card" data-ui="stats/erudition">
-              <div class="stat-main__top"><span>Эрудиция</span><strong>120</strong></div>
-              <div class="progress progress--gold"><i style="width:64%"></i></div>
-              <small>До следующего уровня: 70</small>
-            </div>
-            <div class="stat-pills">
-              <div class="mini card"><b>12</b><span>сегодня</span></div>
-              <div class="mini card"><b>48</b><span>лучшее</span></div>
-              <div class="mini card"><b>73%</b><span>точность</span></div>
-            </div>
-            <div class="chart card" data-ui="stats/chart">
-              <div class="chart__head"><b>Эта неделя</b><span>+34</span></div>
-              <div class="bars">
-                <i style="height:32%"></i><i style="height:58%"></i><i style="height:44%"></i><i style="height:80%"></i><i style="height:66%"></i><i style="height:92%"></i><i style="height:52%"></i>
-              </div>
-              <div class="days"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div>
-            </div>
-          </section>
-
-          <section class="screen" data-screen="achievements">
-            <header class="titlebar">
-              <button class="backbtn" data-nav="collections">‹</button>
-              <h1>Достижения</h1>
-              <span></span>
-            </header>
-            <div class="achievement-summary card" data-ui="achievements/summary">
-              <span>Открыто</span><b>8 / 24</b>
-              <div class="progress"><i style="width:33%"></i></div>
-            </div>
-            <div class="achievement-grid" data-ui="achievements/grid">
-              <div class="achievement unlocked"><i>★</i><b>Первый шаг</b><span>1 уровень</span></div>
-              <div class="achievement unlocked"><i>🔥</i><b>Серия</b><span>5 подряд</span></div>
-              <div class="achievement unlocked"><i>📚</i><b>Читатель</b><span>10 текстов</span></div>
-              <div class="achievement"><i>🏛</i><b>Знаток</b><span>25 авторов</span></div>
-              <div class="achievement"><i>🦉</i><b>Мудрец</b><span>500 эрудиции</span></div>
-              <div class="achievement"><i>✦</i><b>Без ошибок</b><span>10 побед</span></div>
-            </div>
-          </section>
-
-          <section class="screen" data-screen="shop">
-            <header class="titlebar">
-              <button class="backbtn" data-nav="home">‹</button>
-              <h1>Магазин</h1>
-              <div class="resources"><span>◉ <b>0</b></span><span>🪶 <b>5/5</b></span></div>
-            </header>
-            <div class="shop-hero" data-ui="shop/owl">
-              <img src="https://raw.githubusercontent.com/nicita541/game123/main/Assets/Art/owl_shop_v2.png" alt="Сова в магазине">
-              <div><b>Лавка совы</b><span>Запасы для новых открытий</span></div>
-            </div>
-            <div class="products" data-ui="shop/products">
-              <button class="product card"><i>🪶</i><div><b>Пачка перьев</b><span>5 перьев</span></div><strong>69 ₽</strong></button>
-              <button class="product card"><i>🪶</i><div><b>Большая пачка</b><span>15 перьев</span></div><strong>149 ₽</strong></button>
-              <button class="product card"><i>💡</i><div><b>Подсказки</b><span>5 подсказок</span></div><strong>99 ₽</strong></button>
-            </div>
-            <div class="premium card is-disabled"><b>Премиум</b><span>Скоро будет доступно</span></div>
-          </section>
-
-          <section class="screen" data-screen="settings">
-            <header class="titlebar">
-              <button class="backbtn" data-nav="home">‹</button>
-              <h1>Настройки</h1>
-              <span></span>
-            </header>
-            <div class="settings-list">
-              <label class="setting card" data-ui="settings/music"><i>♫</i><div><b>Музыка</b><span>Тихая мелодия</span></div><input type="checkbox" checked><u></u></label>
-              <label class="setting card" data-ui="settings/sound"><i>⌁</i><div><b>Звуки</b><span>Мягкий отклик</span></div><input type="checkbox" checked><u></u></label>
-              <label class="setting card" data-ui="settings/large-text"><i>Aa</i><div><b>Крупный текст</b><span>Увеличить интерфейс</span></div><input type="checkbox"><u></u></label>
-            </div>
-            <div class="settings-footer card" data-ui="settings/about">
-              <b>Эрудиция</b><span>Макет интерфейса • Browser UI Lab</span>
-            </div>
-          </section>
-
-          <section class="screen screen--gameplay" data-screen="gameplay">
-            <header class="gamebar">
-              <button class="backbtn" data-nav="home">‹</button>
-              <div class="hearts" data-ui="gameplay/hearts">♥ ♥ ♥ ♥ ♥</div>
-              <button class="hintbtn" data-ui="gameplay/hint">💡 <b>5</b></button>
-            </header>
-            <div class="quote-area" data-ui="gameplay/quote">
-              <div class="quote-label">КЛАССИКА</div>
-              <div class="cipher">
-                <div class="word"><span data-n="17">М</span><span data-n="8"></span><span data-n="4"></span><span data-n="17">М</span></div>
-                <div class="word"><span data-n="11"></span><span data-n="2">О</span><span data-n="7"></span><span data-n="8"></span></div>
-                <div class="word"><span data-n="5"></span><span data-n="3"></span><span data-n="12">А</span><span data-n="6"></span><span data-n="9"></span></div>
-              </div>
-              <div class="quote-author">— неизвестный автор</div>
-            </div>
-            <div class="keyboard" data-ui="gameplay/keyboard" id="keyboard"></div>
-            <div class="game-actions">
-              <button class="ghost" data-popup="noFeathers">Нет перьев</button>
-              <button class="primary" data-popup="victory">Победа</button>
-            </div>
-          </section>
-
-          <nav class="bottomnav" id="bottomNav" data-ui="global/bottom-nav">
-            <button data-nav="home" class="is-active"><i>⌂</i><span>Главная</span></button>
-            <button data-nav="levels"><i>◫</i><span>Уровни</span></button>
-            <button data-nav="collections"><i>▤</i><span>Библиотека</span></button>
-            <button data-nav="stats"><i>⌁</i><span>Статистика</span></button>
-            <button data-nav="shop"><i>♧</i><span>Магазин</span></button>
-          </nav>
-
-          <div class="modal" id="modal">
-            <div class="modal__shade" data-close-modal></div>
-            <div class="modal__card" id="modalCard"></div>
-          </div>
-        </div>
-      </div>
-      <p class="stage__hint">Это не игра: все элементы — отдельные HTML/CSS-объекты для подбора дизайна.</p>
-    </main>
-  </div>
-
-  <script src="./app.js"></script>
+  <div id="objectHint" class="object-hint">Включи «Объекты» и нажми на элемент.</div>
+  <script src="app.js"></script>
 </body>
 </html>
