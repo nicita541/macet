@@ -11,8 +11,13 @@ const SHEETS={
  authors:{src:RAW+"SpriteSheets/authors_missing.png",sprites:{Pushkin:[0,512,512,512],Tolstoy:[512,512,512,512],Dostoevsky:[1024,512,512,512],Chekhov:[0,0,512,512],Gogol:[512,0,512,512],Turgenev:[1024,0,512,512]}}
 };
 const BG={
- home:RAW+"Backgrounds/home_reference_v1.png",settings:RAW+"Backgrounds/settings_reference_v1.png",stats:RAW+"Backgrounds/stats_reference_v1.png",
- achievements:RAW+"Backgrounds/achievements_reference_v1.png",shop:RAW+"Backgrounds/shop_reference_v1.png",gameplay:RAW+"Backgrounds/gameplay_reference_v1.png",collections:RAW+"Backgrounds/collections_reference_v1.png"
+ home:RAW+"ui_library_background.png",
+ settings:RAW+"ui_library_background.png",
+ stats:RAW+"ui_library_background.png",
+ achievements:RAW+"ui_library_background.png",
+ shop:RAW+"ui_library_background.png",
+ gameplay:RAW+"ui_library_background.png",
+ collections:RAW+"ui_library_background.png"
 };
 const O={normal:RAW+"owl_mascot.png",shop:RAW+"owl_shop_v2.png",victory:RAW+"owl_victory_v2.png"};
 
@@ -46,15 +51,32 @@ function newScreen(name){const s=E("section","screen",{backgroundImage:'url("'+B
 
 function home(){
  const s=newScreen("home");
- const gear=E("button","ui click gear-circle",{left:"24px",top:"57px",width:"46px",height:"46px"},"home/settings");gear.dataset.nav="settings";gear.appendChild(sprite("ui","Gear",7,7,32,32));s.appendChild(gear);
- const res=E("div","ui resource-pill",{left:"171px",top:"61px",width:"135px",height:"40px"},"home/feathers");res.appendChild(sprite("ui","Feather",10,6,25,29));res.insertAdjacentHTML("beforeend","<b>5</b><button class='plus'>+</button>");s.appendChild(res);
- s.appendChild(sprite("ui","Crown",206,104,62,55,"home/crown"));
- ribbon(s,"Эрудиция",123,146,228,71,"home/title");
- s.appendChild(sprite("decor","Laurel",145,210,68,54,"home/laurel-left"));const rr=sprite("decor","Laurel",262,210,68,54,"home/laurel-right");rr.style.transform="scaleX(-1)";s.appendChild(rr);
- const num=text("<b>0</b>",188,220,99,50,"panel round","home/erudition");num.style.display="grid";num.style.placeItems="center";num.style.fontSize="30px";s.appendChild(num);
- s.appendChild(image(O.normal,120,286,235,250,"","home/owl"));
- const cont=buttonNav("", "gameplay",53,570,370,110,"","home/continue");cont.appendChild(sprite("surfaces","GreenButton",0,0,370,110));cont.appendChild(sprite("ui","Book",22,27,54,48));cont.insertAdjacentHTML("beforeend","<div style='position:absolute;left:98px;top:18px;color:white;text-align:left'><b style='font-size:25px'>Продолжить</b><div style='font-size:13px;line-height:19px;margin-top:3px'>Истории и цитаты<br>от простого к сложному</div></div><span style='position:absolute;right:35px;top:35px;color:white;font-size:35px'>›</span>");s.appendChild(cont);
- const levels=buttonNav("", "collections",68,709,339,80,"","home/levels");levels.appendChild(sprite("surfaces","BlueButton",0,0,339,80));levels.appendChild(sprite("ui","Book",20,19,48,42));levels.insertAdjacentHTML("beforeend","<b style='position:absolute;left:87px;top:22px;color:white;font-size:24px'>Уровни</b><span style='position:absolute;right:34px;top:18px;color:white;font-size:34px'>›</span>");s.appendChild(levels);
+ const gear=E("button","ui click gear-circle",{left:"44px",top:"56px",width:"50px",height:"50px"},"home/settings");gear.dataset.nav="settings";gear.appendChild(sprite("ui","Gear",8,8,34,34));s.appendChild(gear);
+
+ const res=E("div","ui resource-pill",{left:"159px",top:"61px",width:"154px",height:"39px"},"home/feathers");
+ res.appendChild(sprite("ui","Feather",13,6,25,29));res.insertAdjacentHTML("beforeend","<b style='font-size:16px'>5</b><button class='plus'>+</button>");s.appendChild(res);
+
+ s.appendChild(sprite("ui","Crown",208,116,60,53,"home/crown"));
+ ribbon(s,"Эрудиция",116,151,244,76,"home/title");
+ s.appendChild(sprite("decor","Laurel",144,210,70,55,"home/laurel-left"));
+ const rr=sprite("decor","Laurel",261,210,70,55,"home/laurel-right");rr.style.transform="scaleX(-1)";s.appendChild(rr);
+
+ const num=text("<b>0</b>",190,218,95,49,"panel round","home/erudition");
+ num.style.display="grid";num.style.placeItems="center";num.style.fontSize="29px";s.appendChild(num);
+
+ s.appendChild(image(O.normal,144,279,190,238,"","home/owl"));
+
+ const cont=buttonNav("", "gameplay",53,569,370,109,"hero-button green","home/continue");
+ cont.appendChild(sprite("ui","Book",20,25,55,49));
+ cont.insertAdjacentHTML("beforeend",
+  "<div class='hero-copy'><b>Продолжить</b><span>Истории и цитаты<br>от простого к сложному</span></div><em>›</em>");
+ s.appendChild(cont);
+
+ const levels=buttonNav("", "collections",68,709,339,79,"hero-button blue","home/levels");
+ levels.appendChild(sprite("ui","Book",18,18,50,44));
+ levels.insertAdjacentHTML("beforeend","<b class='levels-label'>Уровни</b><em>›</em>");
+ s.appendChild(levels);
+
  bottomNav(s,"home");return s
 }
 function settings(){
@@ -83,15 +105,38 @@ function achievements(){
  bottomNav(s,"achievements");return s
 }
 function shop(){
- const s=newScreen("shop");back(s,"home",29,43);ribbon(s,"Магазин",111,48,250,73,"shop/title");
- const r=E("div","ui",{left:"94px",top:"126px",width:"286px",height:"40px",display:"flex",gap:"0"},"shop/resources");
- const a=E("div","resource-pill",{width:"143px",height:"40px",borderRadius:"20px 0 0 20px"});a.appendChild(sprite("ui","Feather",12,7,24,27));a.insertAdjacentHTML("beforeend","<b>5</b><button class='plus'>+</button>");r.appendChild(a);
- const b=E("div","resource-pill",{width:"143px",height:"40px",borderRadius:"0 20px 20px 0",borderLeft:"0"});b.appendChild(sprite("ui","Coin",12,7,25,27));b.insertAdjacentHTML("beforeend","<b>0</b><button class='plus'>+</button>");r.appendChild(b);s.appendChild(r);
- s.appendChild(image(O.shop,82,158,310,180,"","shop/owl"));
- const f=E("div","ui shop-section",{top:"338px",height:"239px"},"shop/feathers");f.insertAdjacentHTML("beforeend","<b style='position:absolute;left:54px;top:14px;font-size:20px'>Перья</b>");f.appendChild(sprite("ui","Feather",14,12,31,36));
- const p1=E("div","productbox",{left:"14px",top:"59px"});p1.appendChild(sprite("stats","FeatherBundle",40,8,90,82));p1.insertAdjacentHTML("beforeend","<b style='position:absolute;left:28px;top:95px;font-size:13px'>Пачка перьев</b><small style='position:absolute;left:52px;top:115px;color:#82748b'>5 перьев</small><div class='price' style='left:14px;right:14px;bottom:6px'><span class='coin'>◉</span>100</div>");f.appendChild(p1);
- const p2=E("div","productbox",{left:"198px",top:"59px"});p2.appendChild(sprite("stats","FeatherBag",38,7,92,88));p2.insertAdjacentHTML("beforeend","<b style='position:absolute;left:27px;top:95px;font-size:13px'>Большая пачка</b><small style='position:absolute;left:55px;top:115px;color:#82748b'>15 перьев</small><div class='price' style='left:14px;right:14px;bottom:6px'><span class='coin'>◉</span>250</div>");f.appendChild(p2);s.appendChild(f);
- const h=E("div","ui shop-section",{top:"589px",height:"116px"},"shop/hints");h.insertAdjacentHTML("beforeend","<b style='position:absolute;left:24px;top:14px;font-size:20px'>Подсказки</b><span style='position:absolute;left:82px;top:67px;font-size:11px;color:#746b83'>5 подсказок</span>");h.appendChild(sprite("ui","Bulb",28,48,43,42));h.insertAdjacentHTML("beforeend","<div class='price' style='right:14px;top:55px;width:115px'><span class='coin'>◉</span>150</div>");s.appendChild(h);bottomNav(s,"shop");return s
+ const s=newScreen("shop");
+ back(s,"home",29,43);
+ ribbon(s,"Магазин",111,48,250,73,"shop/title");
+
+ const r=E("div","ui shop-resource",{left:"94px",top:"126px",width:"286px",height:"40px"},"shop/resources");
+ const left=E("div","shop-resource-half");left.appendChild(sprite("ui","Feather",11,6,25,28));left.insertAdjacentHTML("beforeend","<b>5</b><button class='plus'>+</button>");
+ const right=E("div","shop-resource-half");right.appendChild(sprite("ui","Coin",9,6,26,28));right.insertAdjacentHTML("beforeend","<b>0</b><button class='plus'>+</button>");
+ r.append(left,right);s.appendChild(r);
+
+ s.appendChild(image(O.shop,107,158,260,180,"","shop/owl"));
+
+ const f=E("div","ui shop-section",{top:"338px",height:"239px"},"shop/feathers");
+ f.insertAdjacentHTML("beforeend","<b style='position:absolute;left:54px;top:14px;font-size:20px'>Перья</b>");
+ f.appendChild(sprite("ui","Feather",14,12,31,36));
+
+ const p1=E("div","productbox",{left:"14px",top:"59px"},"shop/feather-pack");
+ p1.appendChild(sprite("stats","FeatherBundle",37,5,95,86));
+ p1.insertAdjacentHTML("beforeend","<b style='position:absolute;left:28px;top:95px;font-size:13px'>Пачка перьев</b><small style='position:absolute;left:52px;top:115px;color:#82748b'>5 перьев</small><div class='price' style='left:14px;right:14px;bottom:6px'><span class='coin'>◉</span>100</div>");
+ f.appendChild(p1);
+
+ const p2=E("div","productbox",{left:"198px",top:"59px"},"shop/feather-bag");
+ p2.appendChild(sprite("stats","FeatherBag",38,4,92,90));
+ p2.insertAdjacentHTML("beforeend","<b style='position:absolute;left:27px;top:95px;font-size:13px'>Большая пачка</b><small style='position:absolute;left:55px;top:115px;color:#82748b'>15 перьев</small><div class='price' style='left:14px;right:14px;bottom:6px'><span class='coin'>◉</span>250</div>");
+ f.appendChild(p2);s.appendChild(f);
+
+ const h=E("div","ui shop-section",{top:"589px",height:"116px"},"shop/hints");
+ h.insertAdjacentHTML("beforeend","<b style='position:absolute;left:24px;top:14px;font-size:20px'>Подсказки</b><span style='position:absolute;left:82px;top:67px;font-size:11px;color:#746b83'>5 подсказок</span>");
+ h.appendChild(sprite("ui","Bulb",28,48,43,42));
+ h.insertAdjacentHTML("beforeend","<div class='price' style='right:14px;top:55px;width:115px'><span class='coin'>◉</span>150</div>");
+ s.appendChild(h);
+
+ bottomNav(s,"shop");return s
 }
 function gameplay(){
  const s=newScreen("gameplay");back(s,"home",26,45);
