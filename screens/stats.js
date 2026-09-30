@@ -1,53 +1,7 @@
-window.SCREEN_BUILDERS=window.SCREEN_BUILDERS||{};
-window.SCREEN_BUILDERS.stats=function(A){
-  const s=A.screen("stats","center center",false);
-
-  A.sprite(s,"ui","Crown",218,32,43,39,"stats/header-crown");
-  A.ribbon(s,"Статистика",119,49,238,78,"stats/title");
-  A.sprite(s,"decor","Laurel",112,72,48,38,"stats/title-left");
-  const r=A.sprite(s,"decor","Laurel",315,72,48,38,"stats/title-right");r.style.transform="scaleX(-1)";
-  A.plain(s,A.STANDALONE.owl,116,103,226,201,"","stats/owl");
-  A.sprite(s,"decor","Ink",55,181,49,77,"stats/ink");
-  A.sprite(s,"decor","Cat",348,199,90,66,"stats/cat");
-
-  const lvl=A.el("div","stat-card",{left:"39px",top:"293px",width:"398px",height:"147px"},"stats/level");
-  A.text(lvl,"Уровень эрудиции",52,14,200,28,"title");lvl.lastChild.style.fontSize="16px";
-  A.text(lvl,"0",91,56,55,58,"title");lvl.lastChild.style.fontSize="48px";
-  A.sprite(lvl,"decor","Laurel",18,60,54,43,"stats/laurel-left");
-  const lr=A.sprite(lvl,"decor","Laurel",160,60,54,43,"stats/laurel-right");lr.style.transform="scaleX(-1)";
-  A.sprite(lvl,"ui","Crown",251,21,64,58,"stats/crown");
-  const bar=A.el("div","",{position:"absolute",left:"205px",top:"88px",width:"158px",height:"20px",borderRadius:"7px",background:"#d6d9ed"});lvl.appendChild(bar);
-  A.text(lvl,"До следующего уровня: 50",208,111,170,18,"");lvl.lastChild.style.cssText+=";font-size:10px;color:#756d87";
-  s.appendChild(lvl);
-
-  const cards=[
-    [39,449,"Fire","Решено задач","0","Всего заданий"],
-    [241,449,"Target","Верных ответов","100%","Точность"],
-    [39,551,"Star","Серия побед","0","Лучший результат: 0"],
-    [241,551,"Calendar","Решено сегодня","0","Ваша активность"]
-  ];
-  cards.forEach(function(c,i){
-    const box=A.el("div","stat-card",{left:c[0]+"px",top:c[1]+"px",width:"194px",height:"94px"},"stats/card-"+(i+1));
-    A.sprite(box,"icons",c[2],10,17,51,53);
-    A.text(box,c[3],78,14,110,20,"title");box.lastChild.style.cssText+=";font-size:11px;text-align:center";
-    A.text(box,c[4],79,35,110,35,"title");box.lastChild.style.cssText+=";font-size:29px;text-align:center";
-    A.text(box,c[5],73,72,115,15,"");box.lastChild.style.cssText+=";font-size:8px;text-align:center;color:#817793";
-    s.appendChild(box);
-  });
-
-  const act=A.el("div","stat-card",{left:"39px",top:"657px",width:"398px",height:"199px"},"stats/activity");
-  A.text(act,"Активность",43,15,170,28,"title");act.lastChild.style.fontSize="17px";
-  A.text(act,"Решённые задачи по дням",43,44,180,16,"");act.lastChild.style.cssText+=";font-size:10px;color:#83798e";
-  ["Неделя","Месяц","Год"].forEach(function(t,i){
-    const b=A.el("button","click",{position:"absolute",top:"11px",right:(31+(2-i)*62)+"px",height:"25px",minWidth:"55px",borderRadius:"12px",border:"0",background:i===0?"#168ff3":"#ebebf5",color:i===0?"#fff":"#574d72",fontSize:"9px",fontWeight:"900"},i===0?"stats/week":"stats/range-"+i);
-    b.textContent=t;act.appendChild(b);
-  });
-  const values=[0,0,0,0,0,0,0],days=["Чт","Пт","Сб","Вс","Пн","Вт","Ср"];
-  for(let i=0;i<7;i++){
-    A.text(act,String(values[i]),35+i*50,75,22,14,"title");act.lastChild.style.cssText+=";font-size:9px;text-align:center";
-    const line=A.el("div","",{position:"absolute",left:(44+i*50)+"px",top:"156px",width:"26px",height:"2px",background:"#24a3ff"});act.appendChild(line);
-    A.text(act,days[i],35+i*50,165,22,14,"");act.lastChild.style.cssText+=";font-size:9px;text-align:center;color:#766d88";
-  }
-  s.appendChild(act);
-  A.bottomNav(s,"stats");
+window.SCREENS.stats=function(UI){
+  const s=UI.screen("stats");const hero=UI.group(s,"stats/hero",38,28,399,264);UI.sprite(hero,"ui","Crown",177,2,46,40,"stats/hero/crown");UI.ribbon(hero,"Статистика",95,39,210,69,"stats/hero/title",26);UI.image(hero,UI.OWL.normal,91,81,218,181,"","stats/hero/owl");
+  const level=UI.group(s,"stats/level",39,294,397,146,"stat-card");let e=UI.el("b","ui",{left:"48px",top:"17px",fontSize:"16px"});e.textContent="Уровень эрудиции";level.appendChild(e);e=UI.el("b","ui",{left:"89px",top:"52px",fontSize:"48px",lineHeight:"1"});e.textContent="0";level.appendChild(e);UI.sprite(level,"decor","Laurel",20,70,50,40,"stats/level/laurel-left");const lr=UI.sprite(level,"decor","Laurel",141,70,50,40,"stats/level/laurel-right");lr.style.transform="scaleX(-1)";UI.sprite(level,"ui","Crown",248,25,65,58,"stats/level/crown");e=UI.el("div","ui",{left:"207px",top:"83px",width:"157px",height:"20px",borderRadius:"7px",background:"#d6d9ed"},"stats/level/progress");level.appendChild(e);e=UI.el("small","ui",{left:"211px",top:"108px",fontSize:"10px",color:"#706a83"},"stats/level/hint");e.textContent="До следующего уровня: 50";level.appendChild(e);
+  [[39,450,"Fire","Решено задач","0","Всего заданий","solved"],[241,450,"Target","Верных ответов","100%","Точность","accuracy"],[39,552,"Star","Серия побед","0","Лучший результат: 0","streak"],[241,552,"Calendar","Решено сегодня","0","Ваша активность","today"]].forEach(function(d){const g=UI.group(s,"stats/"+d[6],d[0],d[1],194,d[1]===552?94:92,"stat-card");UI.sprite(g,"stats",d[2],10,16,50,51,"stats/"+d[6]+"/icon");let x=UI.el("b","ui",{left:"77px",top:"13px",fontSize:"11px"});x.textContent=d[3];g.appendChild(x);x=UI.el("strong","ui",{left:"85px",top:"34px",fontSize:"29px",lineHeight:"1"});x.textContent=d[4];g.appendChild(x);x=UI.el("small","ui",{left:"77px",bottom:"9px",fontSize:"8px",color:"#817793"});x.textContent=d[5];g.appendChild(x)});
+  const act=UI.group(s,"stats/activity",39,657,397,198,"stat-card");e=UI.el("b","ui",{left:"43px",top:"17px",fontSize:"17px"});e.textContent="Активность";act.appendChild(e);e=UI.el("small","ui",{left:"43px",top:"44px",fontSize:"10px",color:"#83798e"});e.textContent="Решённые задачи по дням";act.appendChild(e);const pills=UI.el("div","ui",{right:"31px",top:"13px",display:"flex",gap:"7px"});[["Неделя",true],["Месяц",false],["Год",false]].forEach(function(x){const p=document.createElement("b");p.textContent=x[0];p.style.cssText="padding:5px 10px;border-radius:12px;font-size:9px;background:"+(x[1]?"#168ff3":"#ebebf5")+";color:"+(x[1]?"white":"#40335b");pills.appendChild(p)});act.appendChild(pills);const nums=UI.el("div","ui",{left:"38px",right:"38px",top:"77px",display:"flex",justifyContent:"space-between",fontSize:"9px",fontWeight:"900"});["0","0","0","0","0","0","0"].forEach(function(x){const sp=document.createElement("span");sp.textContent=x;nums.appendChild(sp)});act.appendChild(nums);act.appendChild(UI.el("div","ui",{left:"38px",right:"38px",bottom:"41px",height:"2px",background:"#55aef3"}));const days=UI.el("div","ui",{left:"38px",right:"38px",bottom:"17px",display:"flex",justifyContent:"space-between",fontSize:"9px",color:"#766d88"});["Чт","Пт","Сб","Вс","Пн","Вт","Ср"].forEach(function(x){const sp=document.createElement("span");sp.textContent=x;days.appendChild(sp)});act.appendChild(days);
+  UI.bottomNav(s,"stats",70,862,335,68);return s;
 };

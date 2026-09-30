@@ -1,34 +1,7 @@
-window.SCREEN_BUILDERS=window.SCREEN_BUILDERS||{};
-window.SCREEN_BUILDERS.collections=function(A){
-  const s=A.screen("collections","center center",false);
-
-  A.plain(s,A.STANDALONE.owl,24,38,169,164,"","collections/owl");
-  A.sprite(s,"ui","Crown",210,58,55,49,"collections/crown");
-  A.ribbon(s,"Уровни",139,78,209,78,"collections/title");
-  A.sprite(s,"decor","Laurel",232,133,61,48,"collections/title-laurel");
-  A.sprite(s,"decor","Hourglass",368,142,63,61,"collections/hourglass");
-
-  const tabs=A.el("div","tabs",{left:"42px",top:"237px",width:"391px",height:"45px"},"collections/tabs");
-  ["Авторы","Темы","Книги","Типы"].forEach(function(t,i){const b=document.createElement("button");b.textContent=t;if(i===0)b.className="active";tabs.appendChild(b)});
-  s.appendChild(tabs);
-
-  const authors=[
-    ["Pushkin","А. С. Пушкин","Стихи, поэмы, письма"],
-    ["Tolstoy","Л. Н. Толстой","Романы, рассказы, мысли"],
-    ["Dostoevsky","Ф. М. Достоевский","Романы, повести, мысли"],
-    ["Chekhov","А. П. Чехов","Рассказы, пьесы, цитаты"],
-    ["Gogol","Н. В. Гоголь","Повести, поэмы, проза"],
-    ["Turgenev","И. С. Тургенев","Проза, рассказы, мысли"]
-  ];
-  authors.forEach(function(a,i){
-    const card=A.el("div","author-card",{top:(298+i*89)+"px"},"collections/author-"+(i+1));
-    A.sprite(card,"authors",a[0],10,3,72,72);
-    const cp=A.el("div","copy");cp.innerHTML="<b>"+a[1]+"</b><small>"+a[2]+"</small>";card.appendChild(cp);
-    card.appendChild(A.el("div","line"));
-    const cnt=A.el("span","count");cnt.textContent="0/50";card.appendChild(cnt);
-    const go=A.el("button","go");go.textContent="›";card.appendChild(go);
-    s.appendChild(card);
-  });
-
-  A.bottomNav(s,"collections");
+window.SCREENS.collections=function(UI){
+  const s=UI.screen("collections");const hero=UI.group(s,"collections/hero",36,44,403,188);UI.image(hero,UI.OWL.normal,0,0,161,166,"","collections/hero/owl");UI.ribbon(hero,"Уровни",89,42,247,82,"collections/hero/title",29);UI.sprite(hero,"decor","Hourglass",329,99,72,70,"collections/hero/hourglass");
+  const tabs=UI.el("div","tabs",{left:"42px",top:"236px",width:"390px",height:"48px"},"collections/tabs");["Авторы","Темы","Книги","Типы"].forEach(function(x,i){const b=document.createElement("button");b.type="button";b.textContent=x;if(i===0)b.className="active";tabs.appendChild(b)});s.appendChild(tabs);
+  const authors=[["Pushkin","А. С. Пушкин","Стихи, поэмы, письма"],["Tolstoy","Л. Н. Толстой","Романы, рассказы, мысли"],["Dostoevsky","Ф. М. Достоевский","Романы, повести, мысли"],["Chekhov","А. П. Чехов","Рассказы, пьесы, цитаты"],["Gogol","Н. В. Гоголь","Повести, поэмы, проза"],["Turgenev","И. С. Тургенев","Проза, рассказы, мысли"]];
+  authors.forEach(function(a,i){const g=UI.group(s,"collections/author-"+(i+1),54,296+i*90,367,81,"author-card");UI.sprite(g,"authors",a[0],7,4,73,73,"collections/author-"+(i+1)+"/portrait");const tx=UI.el("div","author-txt",{left:"98px",top:"12px",width:"210px",height:"39px"});tx.innerHTML="<b>"+a[1]+"</b><small>"+a[2]+"</small>";g.appendChild(tx);g.appendChild(UI.el("div","line",{left:"108px",bottom:"14px",width:"139px"}));const n=UI.el("span","n",{left:"257px",bottom:"11px"});n.textContent="0/50";g.appendChild(n);const go=UI.el("button","go",{right:"9px",top:"17px",width:"45px",height:"45px"},"collections/author-"+(i+1)+"/open");go.type="button";go.textContent="›";g.appendChild(go)});
+  UI.bottomNav(s,"collections",70,862,335,69);return s;
 };

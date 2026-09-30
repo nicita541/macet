@@ -1,47 +1,11 @@
-window.SCREEN_BUILDERS=window.SCREEN_BUILDERS||{};
-window.SCREEN_BUILDERS.shop=function(A){
-  const s=A.screen("shop","center center",false);
-  A.back(s,"home",39,55,"shop/back");
-  A.ribbon(s,"Магазин",132,55,214,70,"shop/title");
-  A.sprite(s,"decor","Laurel",108,58,49,39,"shop/title-left");
-  const rr=A.sprite(s,"decor","Laurel",320,58,49,39,"shop/title-right");rr.style.transform="scaleX(-1)";
-
-  const res=A.el("div","ui resource-dark",{left:"66px",top:"125px",width:"343px",height:"38px"},"shop/resources");
-  A.sprite(res,"ui","Feather",16,5,24,28);
-  A.text(res,"5",49,6,25,24,"title");res.lastChild.style.cssText+=";color:white;text-align:center;font-size:16px";
-  const p1=A.el("button","plus",{position:"absolute",left:"118px",top:"4px"},"shop/feather-plus");p1.textContent="+";res.appendChild(p1);
-  A.sprite(res,"ui","Coin",161,3,31,31);
-  A.text(res,"0",232,6,25,24,"title");res.lastChild.style.cssText+=";color:white;text-align:center;font-size:16px";
-  const p2=A.el("button","plus",{position:"absolute",right:"9px",top:"4px"},"shop/coin-plus");p2.textContent="+";res.appendChild(p2);
-  s.appendChild(res);
-
-  A.plain(s,A.STANDALONE.owlShop,98,153,280,176,"","shop/owl");
-
-  const feathers=A.el("div","shop-section",{top:"324px",height:"241px"},"shop/feathers");
-  A.sprite(feathers,"ui","Feather",18,15,31,36);
-  A.text(feathers,"Перья",54,17,120,28,"title");feathers.lastChild.style.fontSize="20px";
-
-  const pcard1=A.el("div","product-card",{left:"10px",top:"60px"},"shop/product-small");
-  A.sprite(pcard1,"icons","FeatherBundle",40,8,98,89);
-  A.text(pcard1,"Пачка перьев",20,97,144,20,"title");pcard1.lastChild.style.cssText+=";font-size:13px;text-align:center";
-  A.text(pcard1,"5 перьев",20,118,144,16,"");pcard1.lastChild.style.cssText+=";font-size:10px;text-align:center;color:#82748b";
-  const price1=A.el("div","price",{left:"15px",right:"15px",bottom:"6px"},"shop/product-small-price");price1.innerHTML="<span>◉</span><b>100</b>";pcard1.appendChild(price1);
-  feathers.appendChild(pcard1);
-
-  const pcard2=A.el("div","product-card",{left:"205px",top:"60px"},"shop/product-large");
-  A.sprite(pcard2,"icons","FeatherBag",42,8,99,94);
-  A.text(pcard2,"Большая пачка",18,97,148,20,"title");pcard2.lastChild.style.cssText+=";font-size:13px;text-align:center";
-  A.text(pcard2,"15 перьев",18,118,148,16,"");pcard2.lastChild.style.cssText+=";font-size:10px;text-align:center;color:#82748b";
-  const price2=A.el("div","price",{left:"15px",right:"15px",bottom:"6px"},"shop/product-large-price");price2.innerHTML="<span>◉</span><b>250</b>";pcard2.appendChild(price2);
-  feathers.appendChild(pcard2);
-  s.appendChild(feathers);
-
-  const hints=A.el("div","shop-section",{top:"575px",height:"116px"},"shop/hints");
-  A.text(hints,"Подсказки",24,14,150,28,"title");hints.lastChild.style.fontSize="20px";
-  A.sprite(hints,"ui","Bulb",30,48,45,44);
-  A.text(hints,"5 подсказок",82,67,110,18,"");hints.lastChild.style.cssText+=";font-size:10px;color:#746b83";
-  const hp=A.el("div","price",{right:"14px",top:"55px",width:"115px"},"shop/hints-price");hp.innerHTML="<span>◉</span><b>150</b>";hints.appendChild(hp);
-  s.appendChild(hints);
-
-  A.bottomNav(s,"shop");
+window.SCREENS.shop=function(UI){
+  const s=UI.screen("shop");UI.back(s,"home",39,54,44,44,"shop/back");
+  const title=UI.group(s,"shop/title",120,53,237,58);UI.ribbon(title,"Магазин",0,0,237,58,"shop/title/ribbon",27);UI.sprite(title,"decor","Laurel",-26,11,62,49,"shop/title/laurel-left");const tr=UI.sprite(title,"decor","Laurel",201,11,62,49,"shop/title/laurel-right");tr.style.transform="scaleX(-1)";
+  const res=UI.group(s,"shop/resources",96,126,304,34);const bar=UI.el("div","resource-pill",{left:"0",top:"0",width:"304px",height:"34px",borderRadius:"19px"});res.appendChild(bar);UI.sprite(bar,"ui","Feather",10,4,24,27,"shop/resources/feather");let e=UI.el("b","ui",{left:"48px",top:"7px",width:"25px",textAlign:"center",color:"white"});e.textContent="5";bar.appendChild(e);e=UI.el("button","plus",{position:"absolute",left:"103px",top:"3px"},"shop/resources/plus-feather");e.type="button";e.textContent="+";bar.appendChild(e);UI.sprite(bar,"ui","Coin",139,1,31,31,"shop/resources/coin");e=UI.el("b","ui",{left:"222px",top:"7px",width:"25px",textAlign:"center",color:"white"});e.textContent="0";bar.appendChild(e);e=UI.el("button","plus",{position:"absolute",right:"3px",top:"3px"},"shop/resources/plus-coin");e.type="button";e.textContent="+";bar.appendChild(e);
+  UI.image(s,UI.OWL.shop,104,165,263,144,"","shop/owl");
+  const feathers=UI.group(s,"shop/feathers",38,324,398,242,"shop-section");UI.sprite(feathers,"ui","Feather",17,14,31,36,"shop/feathers/icon");e=UI.el("b","ui",{left:"55px",top:"15px",fontSize:"20px"});e.textContent="Перья";feathers.appendChild(e);
+  function product(parent,id,x,name,count,asset,price){const g=UI.el("div","productbox",{left:x+"px",top:"60px",width:"178px",height:"164px"},id);parent.appendChild(g);UI.sprite(g,"stats",asset,42,8,94,88,id+"/image");let n=UI.el("b","ui",{left:"18px",right:"18px",top:"97px",textAlign:"center",fontSize:"13px"});n.textContent=name;g.appendChild(n);n=UI.el("small","ui",{left:"18px",right:"18px",top:"117px",textAlign:"center",color:"#82748b"});n.textContent=count;g.appendChild(n);const pr=UI.el("div","price",{left:"10px",right:"10px",bottom:"6px",height:"31px"});const cw=UI.el("div","coinwrap");pr.appendChild(cw);UI.coin(cw,0,0,18);const pv=document.createElement("span");pv.textContent=price;pr.appendChild(pv);g.appendChild(pr)}
+  product(feathers,"shop/feathers/pack-5",10,"Пачка перьев","5 перьев","FeatherBundle","100");product(feathers,"shop/feathers/pack-15",210,"Большая пачка","15 перьев","FeatherBag","250");
+  const hints=UI.group(s,"shop/hints",38,575,398,116,"shop-section");e=UI.el("b","ui",{left:"25px",top:"14px",fontSize:"20px"});e.textContent="Подсказки";hints.appendChild(e);UI.sprite(hints,"ui","Bulb",31,51,43,42,"shop/hints/icon");e=UI.el("span","ui",{left:"82px",top:"67px",fontSize:"11px",color:"#746b83"});e.textContent="5 подсказок";hints.appendChild(e);const hp=UI.el("div","price",{right:"14px",top:"55px",width:"115px",height:"31px"});const hw=UI.el("div","coinwrap");hp.appendChild(hw);UI.coin(hw,0,0,18);const hv=document.createElement("span");hv.textContent="150";hp.appendChild(hv);hints.appendChild(hp);
+  UI.bottomNav(s,"shop",70,861,335,68);return s;
 };

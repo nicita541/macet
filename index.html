@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>Erudition UI Lab</title>
+  <title>Erudition — UI Lab</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="labbar">
-    <b>Erudition</b>
+    <div class="labbrand"><b>Erudition</b><span>UI Lab</span></div>
     <select id="screenSelect" aria-label="Экран">
       <option value="home">Главная</option>
       <option value="settings">Настройки</option>
@@ -19,19 +19,11 @@
       <option value="collections">Уровни</option>
     </select>
     <label class="tooltoggle"><input id="designerToggle" type="checkbox"><span>Объекты</span></label>
-    <button id="copyId" type="button">ID: —</button>
+    <button id="copyId" class="copyid" type="button">ID: —</button>
   </header>
-
-  <main class="stage">
-    <div id="viewportShell" class="viewport-shell">
-      <div id="phone" class="phone">
-        <div id="screens"></div>
-      </div>
-    </div>
-  </main>
-
-  <div id="hint" class="hint">Макет собран из отдельных спрайтов проекта. Скриншоты используются только как эталон.</div>
-
+  <main class="stage"><div id="viewportShell" class="viewport-shell"><div id="phone" class="phone"><div id="screens"></div></div></div></main>
+  <div id="objectHint" class="object-hint">Эталон расположения — присланные тобой скриншоты. Элементы собраны отдельно.</div>
+  <script src="assets.js"></script>
   <script src="screens/home.js"></script>
   <script src="screens/settings.js"></script>
   <script src="screens/stats.js"></script>

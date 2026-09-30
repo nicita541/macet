@@ -1,57 +1,11 @@
-window.SCREEN_BUILDERS=window.SCREEN_BUILDERS||{};
-window.SCREEN_BUILDERS.gameplay=function(A){
-  const s=A.screen("gameplay","center center",false);
-  A.back(s,"home",38,34,"gameplay/back");
-
-  const mode=A.nav(s,"","home",96,35,130,35,"game-pill","gameplay/mode");
-  A.sprite(mode,"ui","Book",8,5,29,26);
-  A.text(mode,"Классика",37,6,85,22,"title");mode.lastChild.style.cssText+=";color:white;text-align:center;font-size:14px";
-
-  const crown=A.el("div","ui panel round",{left:"247px",top:"35px",width:"87px",height:"35px",display:"flex",alignItems:"center",justifyContent:"center",gap:"7px"},"gameplay/erudition");
-  A.sprite(crown,"ui","Crown",8,4,31,27);
-  A.text(crown,"0",49,6,25,22,"title");crown.lastChild.style.fontSize="15px";s.appendChild(crown);
-
-  const hint=A.el("div","ui circle",{left:"389px",top:"29px",width:"48px",height:"48px"},"gameplay/hints");
-  A.sprite(hint,"ui","Bulb",8,8,32,32);
-  A.text(hint,"2",35,-8,22,22,"title");hint.lastChild.style.cssText+=";background:#168ff3;color:white;border-radius:50%;display:grid;place-items:center;font-size:11px";
-  s.appendChild(hint);
-
-  const hearts=A.el("div","ui hearts-row",{left:"187px",top:"87px",width:"103px",height:"39px"},"gameplay/hearts");
-  for(let i=0;i<3;i++)A.sprite(hearts,"ui","Heart",i*34,2,34,34,"gameplay/heart-"+(i+1));
-  s.appendChild(hearts);
-
-  A.sprite(s,"decor","Lantern",76,181,67,55,"gameplay/lantern");
-  A.plain(s,A.STANDALONE.owl,145,118,185,138,"","gameplay/owl");
-
-  A.sprite(s,"surfaces","Parchment",43,247,391,431,"gameplay/parchment");
-  A.text(s,"Лёгкий · Цитаты и мысли<br>Осталось 35 букв · 6 слов<br><small>Открыто 6 из 41 букв</small>",115,257,245,46,"title","gameplay/info").style.cssText+=";font-size:11px;line-height:14px;text-align:center";
-  const prog=A.el("div","ui",{left:"70px",top:"303px",width:"334px",height:"4px",background:"#d8cfb2"},"gameplay/progress");
-  const fill=A.el("div","",{width:"48px",height:"4px",background:"#39a88d"});prog.appendChild(fill);s.appendChild(prog);
-
-  const cipher=A.el("div","cipher",null,"gameplay/cipher");
-  const rows=[
-    [["",18],["",14],["И",19],["",2],["",10],["Е",3]],
-    [["",1],["",19],["",5],["",11],["",12],["",1],["",19],["",2]],
-    [["",13],["",3],["С",19],["",9],["",1],["",12],["",2],["",9],["",1],["",19],["Л",12],["",1],["",18]],
-    [["",1],["",18],["В",3],["",4],["",13],["",1],["",15],["",16],["Р",4],["",17],["",8],["",7],["",3]]
-  ];
-  rows.forEach(function(rowData,ri){
-    const row=A.el("div","cipher-row");
-    rowData.forEach(function(pair,ci){
-      const c=A.el("div","cell"+(ri===0&&ci===0?" sel":""));
-      c.textContent=pair[0];const sm=document.createElement("small");sm.textContent=pair[1];c.appendChild(sm);row.appendChild(c);
-    });
-    cipher.appendChild(row);
-  });
-  s.appendChild(cipher);
-
-  const kb=A.el("div","keyboard",null,"gameplay/keyboard");
-  const letters=["Й","Ц","У","К","Е","Н","Г","Ш","Щ","З","Х","Ъ","Ф","Ы","В","А","П","Р","О","Л","Д","Ж","Э","Ё","Я","Ч","С","М","И","Т","Ь","Б","Ю"];
-  letters.forEach(function(letter){
-    const k=document.createElement("button");k.className="key";
-    if(["Е","В","Р","Л","С"].includes(letter))k.classList.add("used");
-    if(letter==="И")k.classList.add("disabled");
-    k.textContent=letter;kb.appendChild(k);
-  });
-  s.appendChild(kb);
+window.SCREENS.gameplay=function(UI){
+  const s=UI.screen("gameplay");UI.back(s,"home",38,31,41,41,"gameplay/back");
+  const mode=UI.el("button","game-top-pill click",{left:"90px",top:"34px",width:"128px",height:"32px"},"gameplay/mode");mode.type="button";mode.dataset.nav="home";mode.textContent="📖  Классика";s.appendChild(mode);
+  const eru=UI.el("div","panel round",{position:"absolute",left:"246px",top:"34px",width:"88px",height:"32px",display:"flex",alignItems:"center",justifyContent:"center",gap:"6px"},"gameplay/erudition");UI.sprite(eru,"ui","Crown",8,3,28,25);let e=document.createElement("b");e.textContent="0";eru.appendChild(e);s.appendChild(eru);
+  const hi=UI.el("div","panel round",{position:"absolute",left:"389px",top:"27px",width:"44px",height:"47px"},"gameplay/hint");UI.sprite(hi,"ui","Bulb",7,8,30,30);e=UI.el("b","ui",{right:"-5px",top:"-7px",width:"22px",height:"22px",borderRadius:"50%",background:"#168ff3",color:"white",display:"grid",placeItems:"center",fontSize:"11px"});e.textContent="2";hi.appendChild(e);s.appendChild(hi);
+  const hearts=UI.group(s,"gameplay/hearts",186,91,103,32,"hearts");hearts.innerHTML="<span class='heart'>♥</span><span class='heart'>♥</span><span class='heart'>♥</span>";UI.image(s,UI.OWL.normal,138,128,160,118,"","gameplay/owl");
+  const parchment=UI.group(s,"gameplay/parchment",42,248,393,432);UI.sprite(parchment,"surfaces","Parchment",0,0,393,432,"gameplay/parchment/surface");const info=UI.el("div","game-copy",{left:"54px",top:"12px",width:"285px",height:"49px"},"gameplay/parchment/info");info.innerHTML="Лёгкий · Цитаты и мысли<br>Осталось 35 букв · 6 слов<br><small>Открыто 6 из 41 букв</small>";parchment.appendChild(info);const prog=UI.el("div","ui",{left:"27px",top:"66px",width:"322px",height:"5px",background:"#ddd6b8"},"gameplay/parchment/progress");prog.appendChild(UI.el("div","ui",{left:"0",top:"0",width:"51px",height:"5px",background:"#39aa87"}));parchment.appendChild(prog);
+  const cipher=UI.el("div","cipher",{left:"36px",right:"36px",top:"92px",height:"270px"},"gameplay/parchment/cipher");const rows=[[["","И","","","Е"],["","","",""]],[["","","","","","","",""]],[["","С","","","","","",""],["","Л","",""]],[["","В","","","",""],["","Р","","","","",""]]];rows.forEach(function(rd,ri){const row=UI.el("div","cipher-row",{height:(ri===0?58:55)+"px"});rd.forEach(function(wd,wi){const word=UI.el("div","word");wd.forEach(function(ch,ci){const cell=UI.el("div","cell"+(ri===0&&wi===0&&ci===0?" sel":""));cell.textContent=ch;const sm=document.createElement("small");sm.textContent=String((ri*7+wi*4+ci)%19+1);cell.appendChild(sm);word.appendChild(cell)});row.appendChild(word)});cipher.appendChild(row)});parchment.appendChild(cipher);
+  const kb=UI.group(s,"gameplay/keyboard",38,709,397,166,"keyboard");["Й","Ц","У","К","Е","Н","Г","Ш","Щ","З","Х","Ъ","Ф","Ы","В","А","П","Р","О","Л","Д","Ж","Э","Ё","Я","Ч","С","М","И","Т","Ь","Б","Ю"].forEach(function(l){const k=document.createElement("button");k.type="button";k.className="key"+(["Е","В","Р","Л","С"].includes(l)?" used":"")+(l==="И"?" disabled":"");k.textContent=l;kb.appendChild(k)});
+  return s;
 };

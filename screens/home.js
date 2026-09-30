@@ -1,40 +1,10 @@
-window.SCREEN_BUILDERS=window.SCREEN_BUILDERS||{};
-window.SCREEN_BUILDERS.home=function(A){
-  const s=A.screen("home","center center",false);
-
-  const gear=A.nav(s,"","settings",45,56,49,49,"circle","home/settings");
-  A.sprite(gear,"ui","Gear",8,8,33,33);
-
-  const res=A.el("div","ui resource-dark",{left:"160px",top:"61px",width:"156px",height:"39px"},"home/feathers");
-  A.sprite(res,"ui","Feather",10,5,26,30);
-  A.text(res,"<b>5</b>",45,7,25,24,"title");
-  const plus=A.el("button","plus",{position:"absolute",right:"8px",top:"4px"},"home/feathers-plus");plus.textContent="+";res.appendChild(plus);s.appendChild(res);
-
-  A.sprite(s,"ui","Crown",210,112,56,50,"home/crown");
-  A.ribbon(s,"Эрудиция",104,143,267,79,"home/title");
-
-  A.sprite(s,"decor","Laurel",142,211,72,57,"home/laurel-left");
-  const lr=A.sprite(s,"decor","Laurel",261,211,72,57,"home/laurel-right");lr.style.transform="scaleX(-1)";
-
-  const er=A.el("div","ui panel round",{left:"188px",top:"210px",width:"100px",height:"49px",display:"grid",placeItems:"center",fontSize:"30px",fontWeight:"900"},"home/erudition");
-  er.textContent="0";s.appendChild(er);
-
-  A.plain(s,A.STANDALONE.owl,113,276,250,276,"","home/owl");
-
-  const cont=A.nav(s,"","gameplay",52,568,372,110,"","home/continue");
-  A.sprite(cont,"surfaces","GreenButton",0,0,372,110);
-  A.sprite(cont,"ui","Book",20,26,61,54);
-  A.text(cont,"<b>Продолжить</b><span>Истории и цитаты<br>от простого к сложному</span>",101,17,225,78,"");
-  cont.querySelector(".text").style.color="#fff";
-  cont.querySelector("b").style.cssText="display:block;font-size:26px;line-height:28px";
-  cont.querySelector("span").style.cssText="display:block;font-size:13px;line-height:19px;margin-top:3px";
-  A.text(cont,"›",331,25,42,55,"title");cont.lastChild.style.cssText+=";color:white;font-size:34px;text-align:center";
-
-  const levels=A.nav(s,"","collections",67,707,343,79,"","home/levels");
-  A.sprite(levels,"surfaces","BlueButton",0,0,343,79);
-  A.sprite(levels,"ui","Book",19,19,51,44);
-  A.text(levels,"<b>Уровни</b>",85,21,170,37,"");levels.lastChild.style.cssText+=";color:white;font-size:25px";
-  A.text(levels,"›",305,18,42,50,"title");levels.lastChild.style.cssText+=";color:white;font-size:34px;text-align:center";
-
-  A.bottomNav(s,"home");
+window.SCREENS.home=function(UI){
+  const s=UI.screen("home");
+  const settings=UI.el("button","icon-circle click",{left:"45px",top:"56px",width:"52px",height:"52px"},"home/settings");settings.type="button";settings.dataset.nav="settings";s.appendChild(settings);UI.sprite(settings,"ui","Gear",9,9,34,34,"home/settings/icon");
+  const energy=UI.group(s,"home/energy",158,60,157,42);const ep=UI.el("div","resource-pill",{left:"0",top:"0",width:"157px",height:"42px"});energy.appendChild(ep);UI.sprite(ep,"ui","Feather",8,5,27,31,"home/energy/feather");const ev=document.createElement("b");ev.textContent="5";ep.appendChild(ev);const plus=UI.el("button","plus",{position:"relative"},"home/energy/plus");plus.type="button";plus.textContent="+";ep.appendChild(plus);
+  const header=UI.group(s,"home/header",117,108,242,169);UI.sprite(header,"ui","Crown",89,0,64,56,"home/header/crown");UI.ribbon(header,"Эрудиция",0,39,242,90,"home/header/ribbon",34);const num=UI.el("div","panel round",{left:"74px",top:"102px",width:"96px",height:"49px",display:"grid",placeItems:"center",fontSize:"29px",fontWeight:"900"},"home/header/value");num.textContent="0";header.appendChild(num);UI.sprite(header,"decor","Laurel",29,107,65,51,"home/header/laurel-left");const rr=UI.sprite(header,"decor","Laurel",150,107,65,51,"home/header/laurel-right");rr.style.transform="scaleX(-1)";
+  UI.image(s,UI.OWL.normal,112,277,254,264,"","home/owl");
+  const cont=UI.group(s,"home/continue",51,568,372,110);const cb=UI.el("button","action-btn click",{left:"0",top:"0",width:"372px",height:"110px"});cb.type="button";cb.dataset.nav="gameplay";cont.appendChild(cb);UI.sprite(cb,"surfaces","GreenButton",0,0,372,110,"home/continue/surface");UI.sprite(cb,"ui","Book",18,27,58,51,"home/continue/book");const ccopy=UI.el("div","action-copy",{left:"99px",top:"14px",width:"225px",height:"80px"},"home/continue/text");ccopy.innerHTML="<b style='font-size:25px'>Продолжить</b><small style='font-size:13px'>Истории и цитаты<br>от простого к сложному</small>";cb.appendChild(ccopy);const ca=UI.el("span","action-arrow",{right:"19px",top:"31px",width:"47px",height:"47px"},"home/continue/arrow");ca.textContent="›";cb.appendChild(ca);
+  const levels=UI.group(s,"home/levels",66,709,346,81);const lb=UI.el("button","action-btn click",{left:"0",top:"0",width:"346px",height:"81px"});lb.type="button";lb.dataset.nav="collections";levels.appendChild(lb);UI.sprite(lb,"surfaces","BlueButton",0,0,346,81,"home/levels/surface");UI.sprite(lb,"ui","Book",17,18,51,45,"home/levels/book");const lt=UI.el("div","action-copy",{left:"87px",top:"20px",width:"170px",height:"42px"},"home/levels/text");lt.innerHTML="<b style='font-size:24px'>Уровни</b>";lb.appendChild(lt);const la=UI.el("span","action-arrow",{right:"18px",top:"17px",width:"47px",height:"47px"},"home/levels/arrow");la.style.background="#0877d5aa";la.textContent="›";lb.appendChild(la);
+  UI.bottomNav(s,"home",70,861,335,69);return s;
 };
