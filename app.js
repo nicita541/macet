@@ -139,7 +139,6 @@ function sliceEl(screen,s){
   left:x+"px",top:y+"px",width:w+"px",height:h+"px",
   "--x":x,"--y":y
  });
- el.style.setProperty("--ref",`url("${CONFIG[screen].ref}")`);
  if(el.tagName==="BUTTON"){el.type="button";el.style.border="0";el.style.padding="0";}
  return el;
 }
@@ -154,7 +153,7 @@ function build(){
  for(const [name,cfg] of Object.entries(CONFIG)){
   const s=document.createElement("section");
   s.className="screen";s.dataset.screen=name;
-  s.style.backgroundImage=`url("${cfg.bg}")`;
+  s.style.backgroundImage=`url("${cfg.ref}")`;
   cfg.slices.forEach(x=>s.appendChild(sliceEl(name,x)));
   (cfg.hotspots||[]).forEach(x=>s.appendChild(hotspotEl(x)));
   screensRoot.appendChild(s);
