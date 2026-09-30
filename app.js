@@ -1,207 +1,118 @@
-const RAW="https://raw.githubusercontent.com/nicita541/game123/main/";
-const CONFIG={
- home:{
-  bg:RAW+"Assets/Art/Backgrounds/home_reference_v1.png",
-  ref:RAW+"Review/FeedbackPass/Home.png",
-  slices:[
-   ["home/settings",43,47,52,52,"settings"],
-   ["home/feathers",160,61,158,43],
-   ["home/title",127,113,222,162],
-   ["home/hero",91,274,294,291],
-   ["home/continue",53,567,370,111,"gameplay"],
-   ["home/levels",68,708,339,82,"collections"],
-   ["home/bottom-nav",69,861,337,70]
-  ],
-  hotspots:[
-   ["home",101,861,62,70],["stats",171,861,62,70],["achievements",246,861,68,70],["shop",329,861,65,70]
-  ]
- },
- settings:{
-  bg:RAW+"Assets/Art/Backgrounds/settings_reference_v1.png",
-  ref:RAW+"Review/FeedbackPass/Settings.png",
-  slices:[
-   ["settings/back",22,27,45,45,"home"],
-   ["settings/title",116,67,244,76],
-   ["settings/owl",177,150,121,101],
-   ["settings/music",49,275,377,83],
-   ["settings/sound",49,375,377,84],
-   ["settings/vibration",49,476,377,84],
-   ["settings/large-text",49,578,377,84],
-   ["settings/library",64,798,350,42,"home"],
-   ["settings/credits",132,840,211,103]
-  ]
- },
- stats:{
-  bg:RAW+"Assets/Art/Backgrounds/stats_reference_v1.png",
-  ref:RAW+"Review/FeedbackPass/Statistics.png",
-  slices:[
-   ["stats/header-hero",37,31,401,296],
-   ["stats/level",50,319,376,148],
-   ["stats/solved",50,475,188,94],
-   ["stats/accuracy",242,475,188,94],
-   ["stats/streak",50,574,188,94],
-   ["stats/today",242,574,188,94],
-   ["stats/activity",49,671,379,193],
-   ["stats/bottom-nav",82,870,313,62]
-  ],
-  hotspots:[
-   ["home",99,870,66,62],["stats",167,870,67,62],["achievements",236,870,72,62],["shop",311,870,70,62]
-  ]
- },
- achievements:{
-  bg:RAW+"Assets/Art/Backgrounds/achievements_reference_v1.png",
-  ref:RAW+"Review/FeedbackPass/Achievements.png",
-  slices:[
-   ["achievements/header",44,30,388,241],
-   ["achievements/tabs",49,251,378,42],
-   ["achievements/card-1",49,301,378,75],
-   ["achievements/card-2",49,380,378,75],
-   ["achievements/card-3",49,459,378,75],
-   ["achievements/card-4",49,538,378,75],
-   ["achievements/card-5",49,617,378,75],
-   ["achievements/card-6",49,696,378,75],
-   ["achievements/card-7",49,775,378,75],
-   ["achievements/bottom-nav",75,861,327,69]
-  ],
-  hotspots:[
-   ["home",91,861,66,69],["stats",165,861,66,69],["achievements",238,861,72,69],["shop",318,861,67,69]
-  ]
- },
- shop:{
-  bg:RAW+"Assets/Art/Backgrounds/shop_reference_v1.png",
-  ref:RAW+"Review/FeedbackPass/Shop.png",
-  slices:[
-   ["shop/back",30,43,48,48,"home"],
-   ["shop/title",106,42,266,91],
-   ["shop/resources",94,124,286,39],
-   ["shop/owl",79,154,318,183],
-   ["shop/feathers-panel",48,338,380,239],
-   ["shop/hints-panel",48,589,380,116],
-   ["shop/bottom-nav",80,875,315,64]
-  ],
-  hotspots:[
-   ["home",97,875,65,64],["stats",166,875,65,64],["achievements",238,875,70,64],["shop",315,875,67,64]
-  ]
- },
- gameplay:{
-  bg:RAW+"Assets/Art/Backgrounds/gameplay_reference_v1.png",
-  ref:RAW+"03_gameplay_classic.png",
-  slices:[
-   ["gameplay/back",35,42,45,45,"home"],
-   ["gameplay/mode",83,44,140,38],
-   ["gameplay/erudition",241,43,91,39],
-   ["gameplay/hint",388,37,48,55],
-   ["gameplay/hearts",182,91,116,42],
-   ["gameplay/owl",150,123,176,129],
-   ["gameplay/parchment",43,230,389,428],
-   ["gameplay/keyboard",43,681,390,203]
-  ]
- },
- collections:{
-  bg:RAW+"Assets/Art/Backgrounds/collections_reference_v1.png",
-  ref:RAW+"Review/FeedbackPass/Collections.png",
-  slices:[
-   ["collections/header",35,27,405,219],
-   ["collections/tabs",46,236,383,48],
-   ["collections/author-1",48,298,379,78],
-   ["collections/author-2",48,387,379,78],
-   ["collections/author-3",48,476,379,78],
-   ["collections/author-4",48,565,379,78],
-   ["collections/author-5",48,654,379,78],
-   ["collections/author-6",48,743,379,78],
-   ["collections/bottom-nav",71,866,330,69]
-  ],
-  hotspots:[
-   ["home",88,866,68,69],["stats",165,866,68,69],["achievements",241,866,73,69],["shop",319,866,68,69]
-  ]
- }
+const RAW="https://raw.githubusercontent.com/nicita541/game123/main/Assets/Art/";
+const SHEETS={
+ surfaces:{src:RAW+"SpriteSheets/ui_surfaces_reference.png",sprites:{
+  GreenButton:[5,1138,535,240],PurpleButton:[542,1138,544,240],BlueButton:[5,876,535,234],GoldButton:[542,876,544,234],Parchment:[5,378,535,470],CreamCard:[542,406,544,398],KeyboardKey:[115,31,306,317],TitleRibbon:[484,78,602,240]}},
+ ui:{src:RAW+"SpriteSheets/ui_icons_reference.png",sprites:{
+  Feather:[45,691,320,375],Crown:[387,741,319,283],Heart:[741,726,320,280],Bulb:[1058,706,390,380],Book:[35,361,358,315],Lightning:[440,359,255,338],Gear:[742,367,321,314],Statistics:[1100,382,317,284],Home:[39,33,330,310],Trophy:[382,16,344,332],Shop:[738,28,333,320],Coin:[1109,24,304,324]}},
+ settings:{src:RAW+"SpriteSheets/settings_icons_v1.png",sprites:{Music:[93,698,506,444],Sound:[684,693,503,437],Vibration:[82,91,499,476],Text:[645,93,578,489]}},
+ controls:{src:RAW+"SpriteSheets/reference_controls_v2.png",sprites:{CreamCircle:[123,708,419,410],LavenderCircle:[708,705,421,410],BlueCircle:[113,128,431,419],Capsule:[616,192,585,277]}},
+ decor:{src:RAW+"SpriteSheets/reference_decor_v2.png",sprites:{Books:[49,845,575,304],Cat:[701,844,510,369],Ink:[184,417,267,417],Lantern:[712,423,481,394],Laurel:[154,41,419,331],Hourglass:[749,39,390,382]}},
+ stats:{src:RAW+"SpriteSheets/reference_icons_v2.png",sprites:{Fire:[66,723,260,293],Target:[407,726,299,292],Star:[757,738,274,266],Calendar:[1121,718,277,294],Cap:[47,408,309,219],Moon:[445,403,240,246],Gift:[757,386,281,293],FeatherBundle:[1095,379,320,291],FeatherBag:[48,55,297,311],Video:[399,77,316,243],NoAds:[764,65,281,273],Sparkles:[1148,89,249,235]}},
+ authors:{src:RAW+"SpriteSheets/authors_missing.png",sprites:{Pushkin:[0,512,512,512],Tolstoy:[512,512,512,512],Dostoevsky:[1024,512,512,512],Chekhov:[0,0,512,512],Gogol:[512,0,512,512],Turgenev:[1024,0,512,512]}}
 };
+const BG={
+ home:RAW+"Backgrounds/home_reference_v1.png",settings:RAW+"Backgrounds/settings_reference_v1.png",stats:RAW+"Backgrounds/stats_reference_v1.png",
+ achievements:RAW+"Backgrounds/achievements_reference_v1.png",shop:RAW+"Backgrounds/shop_reference_v1.png",gameplay:RAW+"Backgrounds/gameplay_reference_v1.png",collections:RAW+"Backgrounds/collections_reference_v1.png"
+};
+const O={normal:RAW+"owl_mascot.png",shop:RAW+"owl_shop_v2.png",victory:RAW+"owl_victory_v2.png"};
 
-const screensRoot=document.getElementById("screens");
-const phone=document.getElementById("phone");
-const shell=document.getElementById("viewportShell");
-const select=document.getElementById("screenSelect");
-const designer=document.getElementById("designerToggle");
-const compare=document.getElementById("compareToggle");
-const compareLayer=document.getElementById("compareLayer");
-const compareOpacity=document.getElementById("compareOpacity");
-const copyId=document.getElementById("copyId");
-const hint=document.getElementById("objectHint");
+const root=document.getElementById("screens"),phone=document.getElementById("phone"),shell=document.getElementById("viewportShell"),select=document.getElementById("screenSelect"),designer=document.getElementById("designerToggle"),copyId=document.getElementById("copyId"),hint=document.getElementById("objectHint");
 let current="home",selected=null;
 
-function sliceEl(screen,s){
- const [id,x,y,w,h,nav]=s;
- const el=document.createElement(nav?"button":"div");
- el.className="slice";
- el.dataset.ui=id;
- if(nav)el.dataset.nav=nav;
- Object.assign(el.style,{
-  left:x+"px",top:y+"px",width:w+"px",height:h+"px",
-  "--x":x,"--y":y
- });
- if(el.tagName==="BUTTON"){el.type="button";el.style.border="0";el.style.padding="0";}
- return el;
+function E(tag,cls,style={},ui){
+ const e=document.createElement(tag); if(cls)e.className=cls; Object.assign(e.style,style); if(ui)e.dataset.ui=ui; return e;
 }
-function hotspotEl(h){
- const [nav,x,y,w,ht]=h;
- const b=document.createElement("button");
- b.type="button";b.className="nav-hotspot";b.dataset.nav=nav;b.setAttribute("aria-label",nav);
- Object.assign(b.style,{left:x+"px",top:y+"px",width:w+"px",height:ht+"px"});
- return b;
+function text(t,x,y,w,h,cls="",ui){const e=E("div","ui "+cls,{left:x+"px",top:y+"px",width:w+"px",height:h+"px"},ui);e.innerHTML=t;return e}
+function image(src,x,y,w,h,cls="",ui){const e=E("img","plain-img "+cls,{left:x+"px",top:y+"px",width:w+"px",height:h+"px"},ui);e.src=src;return e}
+function sprite(sheetKey,name,x,y,w,h,ui){
+ const [sx,sy,sw,sh]=SHEETS[sheetKey].sprites[name],wrap=E("div","atlas",{left:x+"px",top:y+"px",width:w+"px",height:h+"px"},ui),im=document.createElement("img");
+ im.src=SHEETS[sheetKey].src; wrap.appendChild(im);
+ im.onload=()=>{const kx=w/sw,ky=h/sh;im.style.width=(im.naturalWidth*kx)+"px";im.style.height=(im.naturalHeight*ky)+"px";im.style.left=(-sx*kx)+"px";im.style.top=(-(im.naturalHeight-sy-sh)*ky)+"px"};
+ return wrap;
 }
-function build(){
- for(const [name,cfg] of Object.entries(CONFIG)){
-  const s=document.createElement("section");
-  s.className="screen";s.dataset.screen=name;
-  s.style.backgroundImage=`url("${cfg.ref}")`;
-  cfg.slices.forEach(x=>s.appendChild(sliceEl(name,x)));
-  (cfg.hotspots||[]).forEach(x=>s.appendChild(hotspotEl(x)));
-  screensRoot.appendChild(s);
- }
+function buttonNav(label,nav,x,y,w,h,cls="",ui){const b=E("button","ui click "+cls,{left:x+"px",top:y+"px",width:w+"px",height:h+"px"},ui);b.dataset.nav=nav;b.innerHTML=label;return b}
+function ribbon(screen,label,x,y,w,h,ui){
+ const r=E("div","ribbon-title",{left:x+"px",top:y+"px",width:w+"px",height:h+"px"},ui);r.appendChild(sprite("surfaces","TitleRibbon",0,0,w,h));const s=document.createElement("span");s.textContent=label;s.style.fontSize=Math.round(h*.34)+"px";r.appendChild(s);screen.appendChild(r);return r
 }
-build();
+function iconSprite(parent,sheet,name,x,y,w,h,ui){const s=sprite(sheet,name,x,y,w,h,ui);parent.appendChild(s);return s}
+function back(screen,nav="home",x=24,y=28){const b=buttonNav("‹",nav,x,y,42,42,"back","global/back");screen.appendChild(b)}
+function bottomNav(screen,active){
+ const n=E("div","bottomnav",{}, "global/bottom-nav");
+ const items=[["home","Home","Главная"],["stats","Statistics","Статистика"],["achievements","Trophy","Достижения"],["shop","Shop","Магазин"]];
+ items.forEach(([nav,ic,lab])=>{const b=document.createElement("button");b.dataset.nav=nav;if(nav===active)b.classList.add("active");const c=document.createElement("div");c.className="ico";c.appendChild(sprite("ui",ic,0,0,31,31));b.appendChild(c);const sp=document.createElement("span");sp.textContent=lab;b.appendChild(sp);n.appendChild(b)});
+ screen.appendChild(n)
+}
+function newScreen(name){const s=E("section","screen",{backgroundImage:'url("'+BG[name]+'")'});s.dataset.screen=name;root.appendChild(s);return s}
 
-function show(name){
- if(!CONFIG[name])name="home";
- current=name;
- document.querySelectorAll(".screen").forEach(x=>x.classList.toggle("is-active",x.dataset.screen===name));
- select.value=name;
- compareLayer.src=CONFIG[name].ref;
- if(selected){selected.classList.remove("is-selected");selected=null}
- copyId.textContent="ID: —";
- history.replaceState(null,"","#"+name);
+function home(){
+ const s=newScreen("home");
+ const gear=E("button","ui click gear-circle",{left:"24px",top:"57px",width:"46px",height:"46px"},"home/settings");gear.dataset.nav="settings";gear.appendChild(sprite("ui","Gear",7,7,32,32));s.appendChild(gear);
+ const res=E("div","ui resource-pill",{left:"171px",top:"61px",width:"135px",height:"40px"},"home/feathers");res.appendChild(sprite("ui","Feather",10,6,25,29));res.insertAdjacentHTML("beforeend","<b>5</b><button class='plus'>+</button>");s.appendChild(res);
+ s.appendChild(sprite("ui","Crown",206,104,62,55,"home/crown"));
+ ribbon(s,"Эрудиция",123,146,228,71,"home/title");
+ s.appendChild(sprite("decor","Laurel",145,210,68,54,"home/laurel-left"));const rr=sprite("decor","Laurel",262,210,68,54,"home/laurel-right");rr.style.transform="scaleX(-1)";s.appendChild(rr);
+ const num=text("<b>0</b>",188,220,99,50,"panel round","home/erudition");num.style.display="grid";num.style.placeItems="center";num.style.fontSize="30px";s.appendChild(num);
+ s.appendChild(image(O.normal,120,286,235,250,"","home/owl"));
+ const cont=buttonNav("", "gameplay",53,570,370,110,"","home/continue");cont.appendChild(sprite("surfaces","GreenButton",0,0,370,110));cont.appendChild(sprite("ui","Book",22,27,54,48));cont.insertAdjacentHTML("beforeend","<div style='position:absolute;left:98px;top:18px;color:white;text-align:left'><b style='font-size:25px'>Продолжить</b><div style='font-size:13px;line-height:19px;margin-top:3px'>Истории и цитаты<br>от простого к сложному</div></div><span style='position:absolute;right:35px;top:35px;color:white;font-size:35px'>›</span>");s.appendChild(cont);
+ const levels=buttonNav("", "collections",68,709,339,80,"","home/levels");levels.appendChild(sprite("surfaces","BlueButton",0,0,339,80));levels.appendChild(sprite("ui","Book",20,19,48,42));levels.insertAdjacentHTML("beforeend","<b style='position:absolute;left:87px;top:22px;color:white;font-size:24px'>Уровни</b><span style='position:absolute;right:34px;top:18px;color:white;font-size:34px'>›</span>");s.appendChild(levels);
+ bottomNav(s,"home");return s
 }
-document.addEventListener("click",e=>{
- const nav=e.target.closest("[data-nav]");
- if(nav){e.preventDefault();show(nav.dataset.nav);return}
- if(designer.checked){
-  const obj=e.target.closest(".slice");
-  if(obj){
-   e.preventDefault();e.stopPropagation();
-   if(selected)selected.classList.remove("is-selected");
-   selected=obj;selected.classList.add("is-selected");
-   copyId.textContent="ID: "+obj.dataset.ui;
-   hint.textContent=obj.dataset.ui+" — скажи мне этот ID и нужную правку";
-  }
- }
-});
-select.addEventListener("change",()=>show(select.value));
-designer.addEventListener("change",()=>{phone.classList.toggle("design-mode",designer.checked);hint.textContent=designer.checked?"Нажми на любой выделенный объект.":"Включи «Объекты» и нажми на элемент."});
-compare.addEventListener("change",()=>phone.classList.toggle("compare-on",compare.checked));
-compareOpacity.addEventListener("input",()=>compareLayer.style.opacity=compareOpacity.value/100);
-copyId.addEventListener("click",async()=>{if(selected){try{await navigator.clipboard.writeText(selected.dataset.ui);hint.textContent="Скопировано: "+selected.dataset.ui}catch{}}});
+function settings(){
+ const s=newScreen("settings");back(s,"home",20,28);ribbon(s,"Настройки",116,65,244,69,"settings/title");s.appendChild(image(O.normal,177,146,121,111,"","settings/owl"));
+ [["Music","Музыка",278,true],["Sound","Звук",378,true],["Vibration","Вибрация",479,true],["Text","Крупный текст",580,false]].forEach(([ic,lab,y,on],i)=>{const c=E("div","ui setting-card",{top:y+"px"},"settings/"+ic.toLowerCase());const well=E("div","iconwell");c.appendChild(well);c.appendChild(sprite("settings",ic,26,17,47,47));c.appendChild(text(lab,92,25,190,30,"stext"));const t=E("div","toggle "+(on?"on":""),{},null);t.style.right="22px";t.style.top="24px";c.appendChild(t);s.appendChild(c)});
+ const lib=buttonNav("<b style='font-size:15px;color:white'>В библиотеку</b>","collections",68,800,340,40,"","settings/library");lib.style.borderRadius="22px";lib.style.background="linear-gradient(#36b5ff,#087aec)";lib.style.border="2px solid #fff6d1";lib.style.boxShadow="0 2px 5px #0002";s.appendChild(lib);
+ s.appendChild(text("Музыка: Э. Сати · Robin Alcicatore / Musopen<br>Звуки: Kenney · CC0",120,842,235,38,"","settings/credits"));s.lastChild.style.cssText+=";font-size:9px;text-align:center;color:#5d4e4e";
+ s.appendChild(text("Инструменты разработчика",145,908,185,18,"","settings/dev"));s.lastChild.style.cssText+=";font-size:8px;text-align:center;color:#8b796f";return s
+}
+function stats(){
+ const s=newScreen("stats");ribbon(s,"Статистика",134,66,208,69,"stats/title");s.appendChild(sprite("ui","Crown",216,37,45,40));s.appendChild(image(O.normal,131,109,215,192,"","stats/owl"));
+ const lvl=E("div","ui stat-card",{left:"50px",top:"319px",width:"376px",height:"148px"},"stats/level");lvl.innerHTML="<b style='position:absolute;left:50px;top:18px;font-size:16px'>Уровень эрудиции</b><b style='position:absolute;left:85px;top:53px;font-size:48px'>0</b><div style='position:absolute;left:205px;top:82px;width:157px;height:21px;border-radius:7px;background:#d6d9ed'></div><small style='position:absolute;left:210px;top:108px;font-size:10px;color:#706a83'>До следующего уровня: 50</small>";lvl.appendChild(sprite("ui","Crown",244,27,66,60));lvl.appendChild(sprite("decor","Laurel",20,72,50,40));const lr=sprite("decor","Laurel",140,72,50,40);lr.style.transform="scaleX(-1)";lvl.appendChild(lr);s.appendChild(lvl);
+ const boxes=[
+  [50,475,"Fire","Решено задач","0","Всего заданий"],[242,475,"Target","Верных ответов","100%","Точность"],
+  [50,574,"Star","Серия побед","0","Лучший результат: 0"],[242,574,"Calendar","Решено сегодня","0","Ваша активность"]
+ ];
+ boxes.forEach(([x,y,ic,t,v,sm])=>{const c=E("div","ui stat-card",{left:x+"px",top:y+"px",width:"188px",height:"94px"},"stats/"+t.toLowerCase().replaceAll(" ","-"));c.appendChild(sprite("stats",ic,10,17,49,51));c.insertAdjacentHTML("beforeend",'<b style="position:absolute;left:76px;top:14px;font-size:11px">'+t+'</b><strong style="position:absolute;left:85px;top:34px;font-size:29px">'+v+'</strong><small style="position:absolute;left:76px;bottom:10px;color:#817793;font-size:8px">'+sm+'</small>');s.appendChild(c)});
+ const act=E("div","ui stat-card",{left:"50px",top:"671px",width:"376px",height:"193px"},"stats/activity");act.innerHTML="<b style='position:absolute;left:43px;top:17px;font-size:17px'>Активность</b><small style='position:absolute;left:43px;top:44px;color:#83798e'>Решённые задачи по дням</small><div style='position:absolute;right:31px;top:13px;display:flex;gap:7px'><b style='background:#168ff3;color:#fff;padding:5px 10px;border-radius:12px;font-size:9px'>Неделя</b><b style='background:#ebebf5;padding:5px 10px;border-radius:12px;font-size:9px'>Месяц</b><b style='background:#ebebf5;padding:5px 10px;border-radius:12px;font-size:9px'>Год</b></div>";
+ const bars=E("div","activity-bars");[2,2,2,2,2,2,2].forEach((h,i)=>{const b=document.createElement("i");b.style.height=h+"px";bars.appendChild(b)});act.appendChild(bars);act.insertAdjacentHTML("beforeend","<div style='position:absolute;left:39px;right:39px;bottom:18px;display:flex;justify-content:space-between;font-size:9px;color:#766d88'><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span><span>Пн</span><span>Вт</span><span>Ср</span></div>");s.appendChild(act);bottomNav(s,"stats");return s
+}
+function achievements(){
+ const s=newScreen("achievements");s.appendChild(image(O.victory,70,25,340,215,"","achievements/owl"));ribbon(s,"Достижения",85,144,305,82,"achievements/title");
+ const tabs=E("div","ui tabs",{left:"49px",top:"251px",width:"378px",height:"42px"},"achievements/tabs");["Все","Прогресс","Особые"].forEach((x,i)=>{const b=document.createElement("button");b.textContent=x;if(i===0)b.className="active";tabs.appendChild(b)});s.appendChild(tabs);
+ const data=[["Star","Первые шаги","Реши 10 задач","0/10"],["Book","Любознательный","Реши 50 задач","0/50"],["Trophy","Эрудит","Достигни 5 уровня","0/5"],["Cap","Ценитель классики","Прочитай 10 произведений","0/10"],["Heart","Коллекционер","Собери 20 разных историй","0/20"],["Target","Мастер точности","Реши 30 задач без ошибок","0/30"],["Moon","Ночной гений","Реши 5 задач подряд вечером","0/5"]];
+ data.forEach((d,i)=>{const y=301+i*79,c=E("div","ui achievement-card",{top:y+"px"},"achievements/card-"+(i+1)),badge=E("div","badge");c.appendChild(badge);let sheet=d[0]==="Book"||d[0]==="Heart"||d[0]==="Trophy"?"ui":"stats";c.appendChild(sprite(sheet,d[0],15,13,47,47));c.insertAdjacentHTML("beforeend",'<div class="atext"><b>'+d[1]+'</b><small>'+d[2]+'</small></div><div class="prog"><i style="width:0"></i></div><span class="count">'+d[3]+'</span><span class="arrow">›</span>');s.appendChild(c)});
+ bottomNav(s,"achievements");return s
+}
+function shop(){
+ const s=newScreen("shop");back(s,"home",29,43);ribbon(s,"Магазин",111,48,250,73,"shop/title");
+ const r=E("div","ui",{left:"94px",top:"126px",width:"286px",height:"40px",display:"flex",gap:"0"},"shop/resources");
+ const a=E("div","resource-pill",{width:"143px",height:"40px",borderRadius:"20px 0 0 20px"});a.appendChild(sprite("ui","Feather",12,7,24,27));a.insertAdjacentHTML("beforeend","<b>5</b><button class='plus'>+</button>");r.appendChild(a);
+ const b=E("div","resource-pill",{width:"143px",height:"40px",borderRadius:"0 20px 20px 0",borderLeft:"0"});b.appendChild(sprite("ui","Coin",12,7,25,27));b.insertAdjacentHTML("beforeend","<b>0</b><button class='plus'>+</button>");r.appendChild(b);s.appendChild(r);
+ s.appendChild(image(O.shop,82,158,310,180,"","shop/owl"));
+ const f=E("div","ui shop-section",{top:"338px",height:"239px"},"shop/feathers");f.insertAdjacentHTML("beforeend","<b style='position:absolute;left:54px;top:14px;font-size:20px'>Перья</b>");f.appendChild(sprite("ui","Feather",14,12,31,36));
+ const p1=E("div","productbox",{left:"14px",top:"59px"});p1.appendChild(sprite("stats","FeatherBundle",40,8,90,82));p1.insertAdjacentHTML("beforeend","<b style='position:absolute;left:28px;top:95px;font-size:13px'>Пачка перьев</b><small style='position:absolute;left:52px;top:115px;color:#82748b'>5 перьев</small><div class='price' style='left:14px;right:14px;bottom:6px'><span class='coin'>◉</span>100</div>");f.appendChild(p1);
+ const p2=E("div","productbox",{left:"198px",top:"59px"});p2.appendChild(sprite("stats","FeatherBag",38,7,92,88));p2.insertAdjacentHTML("beforeend","<b style='position:absolute;left:27px;top:95px;font-size:13px'>Большая пачка</b><small style='position:absolute;left:55px;top:115px;color:#82748b'>15 перьев</small><div class='price' style='left:14px;right:14px;bottom:6px'><span class='coin'>◉</span>250</div>");f.appendChild(p2);s.appendChild(f);
+ const h=E("div","ui shop-section",{top:"589px",height:"116px"},"shop/hints");h.insertAdjacentHTML("beforeend","<b style='position:absolute;left:24px;top:14px;font-size:20px'>Подсказки</b><span style='position:absolute;left:82px;top:67px;font-size:11px;color:#746b83'>5 подсказок</span>");h.appendChild(sprite("ui","Bulb",28,48,43,42));h.insertAdjacentHTML("beforeend","<div class='price' style='right:14px;top:55px;width:115px'><span class='coin'>◉</span>150</div>");s.appendChild(h);bottomNav(s,"shop");return s
+}
+function gameplay(){
+ const s=newScreen("gameplay");back(s,"home",26,45);
+ const mode=buttonNav("📖 &nbsp; Классика","home",85,46,140,34,"game-top-pill","gameplay/mode");s.appendChild(mode);
+ const crown=E("div","ui panel round",{left:"245px",top:"46px",width:"87px",height:"34px",display:"flex",alignItems:"center",justifyContent:"center",gap:"7px"},"gameplay/erudition");crown.appendChild(sprite("ui","Crown",9,4,29,26));crown.insertAdjacentHTML("beforeend","<b>0</b>");s.appendChild(crown);
+ const hintb=E("div","ui panel round",{left:"392px",top:"39px",width:"45px",height:"45px"},"gameplay/hints");hintb.appendChild(sprite("ui","Bulb",7,7,31,31));hintb.insertAdjacentHTML("beforeend","<b style='position:absolute;right:-5px;top:-8px;background:#168ff3;color:white;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px'>2</b>");s.appendChild(hintb);
+ const hearts=E("div","ui hearts",{left:"189px",top:"91px",width:"100px",height:"35px"},"gameplay/hearts");hearts.innerHTML="<span class='heart'>♥</span><span class='heart'>♥</span><span class='heart'>♥</span>";s.appendChild(hearts);s.appendChild(image(O.normal,153,124,171,129,"","gameplay/owl"));
+ s.appendChild(sprite("surfaces","Parchment",44,230,388,429,"gameplay/parchment"));s.appendChild(text("Лёгкий · Цитаты и мысли<br>Осталось 35 букв · 6 слов<br><small>Открыто 6 из 41 букв</small>",99,250,278,48,"game-copy","gameplay/info"));
+ const cipher=E("div","ui cipher",{},"gameplay/cipher");const rows=[[["","И","","","Е"],["","","",""]],[["С","","","","","",""],["","Л","",""]],[["","В","","","",""],["","Р","","","","",""]]];rows.forEach((r,ri)=>{const row=E("div","cipher-row");r.forEach((w,wi)=>{const word=E("div","word");w.forEach((ch,ci)=>{const c=E("div","cell"+(ri===0&&wi===0&&ci===0?" sel":""));c.textContent=ch;c.appendChild(Object.assign(document.createElement("small"),{textContent:String((ri*7+wi*4+ci)%19+1)}));word.appendChild(c)});row.appendChild(word)});cipher.appendChild(row)});s.appendChild(cipher);
+ const kb=E("div","ui keyboard",{},"gameplay/keyboard"),letters=["Й","Ц","У","К","Е","Н","Г","Ш","Щ","З","Х","Ъ","Ф","Ы","В","А","П","Р","О","Л","Д","Ж","Э","Ё","Я","Ч","С","М","И","Т","Ь","Б","Ю"];letters.forEach(l=>{const k=document.createElement("button");k.className="key"+(["Е","В","Р","Л","С"].includes(l)?" used":"")+(l==="И"?" disabled":"");k.textContent=l;kb.appendChild(k)});s.appendChild(kb);return s
+}
+function collections(){
+ const s=newScreen("collections");s.appendChild(image(O.normal,28,24,165,175,"","collections/owl"));ribbon(s,"Уровни",112,75,247,83,"collections/title");s.appendChild(sprite("decor","Hourglass",365,144,72,70,"collections/hourglass"));
+ const tabs=E("div","ui tabs",{left:"46px",top:"236px",width:"383px",height:"48px"},"collections/tabs");["Авторы","Темы","Книги","Типы"].forEach((x,i)=>{const b=document.createElement("button");b.textContent=x;if(i===0)b.className="active";tabs.appendChild(b)});s.appendChild(tabs);
+ const authors=[["Pushkin","А. С. Пушкин","Стихи, поэмы, письма"],["Tolstoy","Л. Н. Толстой","Романы, рассказы, мысли"],["Dostoevsky","Ф. М. Достоевский","Романы, повести, мысли"],["Chekhov","А. П. Чехов","Рассказы, пьесы, цитаты"],["Gogol","Н. В. Гоголь","Повести, поэмы, проза"],["Turgenev","И. С. Тургенев","Проза, рассказы, мысли"]];
+ authors.forEach((a,i)=>{const c=E("div","ui author-card",{top:(299+i*89)+"px"},"collections/author-"+(i+1));c.appendChild(sprite("authors",a[0],11,3,70,70));c.insertAdjacentHTML("beforeend",'<div class="author-txt"><b>'+a[1]+'</b><small>'+a[2]+'</small></div><div class="line"></div><span class="n">0/50</span><button class="go">›</button>');s.appendChild(c)});
+ bottomNav(s,"collections");return s
+}
+home();settings();stats();achievements();shop();gameplay();collections();
 
-function fit(){
- const top=window.innerWidth<=760?94:54;
- const maxW=Math.max(280,window.innerWidth-24);
- const maxH=Math.max(420,window.innerHeight-top-30);
- const scale=Math.min(1,maxW/475,maxH/957);
- phone.style.transform=`scale(${scale})`;
- shell.style.width=(475*scale)+"px";
- shell.style.height=(957*scale)+"px";
-}
-window.addEventListener("resize",fit);
-fit();
-const initial=location.hash.slice(1);
-show(CONFIG[initial]?initial:"home");
-compareLayer.style.opacity=compareOpacity.value/100;
+function show(name){current=name;document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("active",s.dataset.screen===name));select.value=name;if(selected){selected.classList.remove("selected");selected=null}copyId.textContent="ID: —";history.replaceState(null,"","#"+name)}
+document.addEventListener("click",e=>{const nav=e.target.closest("[data-nav]");if(nav&&!designer.checked){show(nav.dataset.nav);return}if(designer.checked){const u=e.target.closest("[data-ui]");if(u){e.preventDefault();e.stopPropagation();if(selected)selected.classList.remove("selected");selected=u;u.classList.add("selected");copyId.textContent="ID: "+u.dataset.ui;hint.textContent=u.dataset.ui+" — скажи этот ID и что изменить"}}});
+select.addEventListener("change",()=>show(select.value));designer.addEventListener("change",()=>{phone.classList.toggle("design-mode",designer.checked);hint.textContent=designer.checked?"Нажми на элемент — получишь его ID.":"Макет собран по присланным тобой скриншотам."});copyId.addEventListener("click",async()=>{if(selected)try{await navigator.clipboard.writeText(selected.dataset.ui);hint.textContent="Скопировано: "+selected.dataset.ui}catch{}});
+function fit(){const top=window.innerWidth<=760?92:54,maxW=Math.max(260,window.innerWidth-20),maxH=Math.max(380,window.innerHeight-top-24),k=Math.min(1,maxW/475,maxH/957);phone.style.transform="scale("+k+")";shell.style.width=475*k+"px";shell.style.height=957*k+"px"}window.addEventListener("resize",fit);fit();show(location.hash.slice(1)||"home");
