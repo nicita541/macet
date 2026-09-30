@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>Erudition — Pixel UI Lab</title>
+  <title>Erudition — UI макет</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="labbar">
-    <div class="labbar__brand"><b>Erudition</b><span>Pixel UI Lab</span></div>
+    <b>Erudition</b>
     <select id="screenSelect" aria-label="Экран">
       <option value="home">Главная</option>
       <option value="settings">Настройки</option>
@@ -16,24 +16,17 @@
       <option value="achievements">Достижения</option>
       <option value="shop">Магазин</option>
       <option value="gameplay">Игра</option>
-      <option value="collections">Уровни / авторы</option>
+      <option value="collections">Уровни</option>
     </select>
     <label class="tooltoggle"><input id="designerToggle" type="checkbox"><span>Объекты</span></label>
-    <label class="tooltoggle"><input id="compareToggle" type="checkbox"><span>Сравнить</span></label>
-    <input id="compareOpacity" class="opacity" type="range" min="0" max="100" value="50" title="Прозрачность референса">
     <button id="copyId" class="copyid" type="button">ID: —</button>
   </header>
-
   <main class="stage">
     <div id="viewportShell" class="viewport-shell">
-      <div id="phone" class="phone">
-        <div id="screens"></div>
-        <img id="compareLayer" class="compare-layer" alt="">
-      </div>
+      <div id="phone" class="phone"><div id="screens"></div></div>
     </div>
   </main>
-
-  <div id="objectHint" class="object-hint">Включи «Объекты» и нажми на элемент.</div>
+  <div id="objectHint" class="object-hint">Макет собран по присланным тобой скриншотам.</div>
   <script src="app.js"></script>
 </body>
 </html>
